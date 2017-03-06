@@ -1,0 +1,2 @@
+aldjemy==0.6.0
+Django==1.10.6
