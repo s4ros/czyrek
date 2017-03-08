@@ -17,7 +17,7 @@ from .models import User
 def generateSHA1(text):
     sha_1 = hashlib.sha1()
     sha_1.update(text.encode("utf-8"))
-    print(sha_1.hexdigest())
+    return sha_1.hexdigest()
 
 ####################
 ## views
