@@ -5,7 +5,8 @@ from django.db import models
 # Create your models here.
 # Create your models here.
 class User(models.Model):
-    email = models.EmailField()
+    login = models.CharField(max_length=50, blank=False)
+    passwd = models.CharField(max_length=100,blank=False)
+    email = models.EmailField(max_length=50)
     full_name = models.CharField(max_length=30, blank=False)
-    lastlog = models.DateTimeField(auto_now=True)
-
+    lastlog = models.DateTimeField(auto_now=False,editable=False)
