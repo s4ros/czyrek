@@ -1,0 +1,14 @@
+{% if all_users %}
+<h2>Wszyscy użytkownicy obecni w systemie:</h2>
+    <ul>
+    {% for user in all_users %}
+    <li>{{ user.id }}. <b>Login:</b> {{ user.login }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.full_name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Brak uzytkowników do wyświetlenia :()</p>
+{% endif %}
+<div>
+  <hr />
+  <a href="{% url 'add_user' %}">Dodaj nowego użytkownika</a>
+</div>
