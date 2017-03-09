@@ -18,11 +18,15 @@ class Schools(models.Model):
     is_available = models.BooleanField()
 
 class Profiles(models.Model):
-    school_id = models.ForeignFey(Schools)
+    school_id = models.ForeignKey(Schools)
     name = models.CharField(max_length=30)
     is_available = models.BooleanField()
 
-#class Languages(models.Model):
+class Languages(models.Model):
+    #nie wiem czy po tym bedzie schools?
+    school_id = models.ForeignKey(Schools)
+    name = models.CharField(max_length=30)
+    is_available = models.BooleanField()
 
 class Subjects(models.Model):
     is_available = models.BooleanField()
