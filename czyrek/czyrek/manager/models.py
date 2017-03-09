@@ -13,6 +13,25 @@ class User(models.Model):
     def __str__(self):
         return self.login + " (" + self.email + ")" + " - " + self.full_name
 
+class Candidate(models.Model):
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=50)
+    city = models.CharField(max_length=100)
+    address = models.TextField()
+    postalcode = models.IntegerField()
+    voivodeship = models.CharField(max_length=50)
+    community = models.CharField(max_length=50)
+    phone = models.IntegerField()
+    pesel = models.IntegerField()
+    birthdate = models.DateField()
+    last_school = models.CharField(max_length=100)
+    primary_language = models.ForeignKey(Languages)
+    secondary_language = models.ForeignKey(Languages)
+    subject_one = models.ForeignKey(Subjects)
+    subject_two = models.ForeignKey(Subjects)
+    subject_three = = models.ForeignKey(Subjects)
+    #photo = models.
+
 class Schools(models.Model):
     name = models.CharField(max_length=100)
     is_available = models.BooleanField()
