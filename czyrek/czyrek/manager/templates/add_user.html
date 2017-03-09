@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{# ------------------------------------- #}
 {% block content %}
 
 <h1>Dodaj nowego użytkownika</h1>
@@ -6,7 +8,8 @@
 
 <form action="{% url 'add_user' %}" method="post">
 {% csrf_token %}
-{{ form.as_p }}
+{{ form }}
 <input type="submit" value="Dodaj" />
 </form>
 {% endblock %}
+{# ------------------------------------- #}

@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 ####################
 ## forms
 from .forms import AddUserPostForm
+from .forms import LoginForm
 ####################
 ## models
 from .models import User
@@ -26,7 +27,7 @@ def list_users(request):
     context = { 'all_users' : all_users }
     return render(request, "list_users.html", context)
 
-# ---
+# add_user
 def add_user(request):
     if request.method == 'POST':
         print(repr(request))
@@ -44,3 +45,13 @@ def add_user(request):
         form = AddUserPostForm()
         context = {'form' : form}
         return render(request, "add_user.html", context)
+
+
+# index_login
+def index_login(request):
+    if request.method == 'POST':
+        return redirect('list_users')
+    else:
+        form = LoginForm()
+        context = {'username': 's4ros', 'form' : form}
+        return render(request, 'index_login.html', context)

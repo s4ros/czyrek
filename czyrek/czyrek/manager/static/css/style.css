@@ -1,0 +1,81 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  /*background-color: #000;*/
+}
+
+#page {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: #fff;
+  width:100%;
+  background-image: url(../bg.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  width: 50%;
+  /*height: 45%;*/
+  background: rgba(128, 156, 128, 0.5);
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+#logging_panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#logging_panel form {
+  display: block;
+}
+
+#sql_logo {
+  display: block;
+  background-image: url(../logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 878px;
+  height: 143px;
+}
+
+.fieldWrapper {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fieldWrapper label {
+  font-size: 2em;
+}
+
+.fieldWrapper input {
+  display: inline-block;;
+  font-size: 2em;
+  border: 0;
+  padding-left: 10px;
+}
+
+#send_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fieldWrapper input[type="submit"] {
+  display: block;
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>CzyRek - Czyżew Recrutation System</title>
+  <meta name="description" content="Czyżew Recrutation System">
+  <meta name="author" content="s4ros">
+  <meta name="author" content="emi">
+
+  {% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<div id="page">
+{% block content %}
+{% endblock content %}
+</div>
+{% block scripts %}
+{% endblock scripts %}
+
+</body>
+</html>
