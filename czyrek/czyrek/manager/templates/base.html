@@ -20,12 +20,16 @@
 </head>
 
 <body>
+
+  {% block topnav %}
+  {% endblock topnav %}
+
 <div id="page">
-{% block content %}
-{% endblock content %}
+  {% block content %}
+  {% endblock content %}
 </div>
-{% block scripts %}
-{% endblock scripts %}
+  {% block scripts %}
+  {% endblock scripts %}
 
 </body>
 </html>

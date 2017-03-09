@@ -45,6 +45,13 @@ html, body {
   padding-right: 50px;
 }
 
+#topnav {
+  position: fixed;
+  width: 100%;
+  height: 150px;
+  background-color: rgba(128, 158, 128, 0.5);
+}
+
 #logging_panel {
   display: flex;
   justify-content: center;
