@@ -25,7 +25,7 @@ SECRET_KEY = '-g)g_fzt0c5fd1xa@f2_j7_fbexa5-c#)_jw#d4-6%pl69)qs-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'czyrek.infinigy.pl']
+ALLOWED_HOSTS = [u'czyrek.infinigy.pl', u'localhost']
 
 
 # Application definition
