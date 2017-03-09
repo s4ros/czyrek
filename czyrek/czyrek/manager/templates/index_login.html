@@ -5,7 +5,7 @@
 <div id="container">
   <div id="sql_logo"></div>
   <div id="logging_panel">
-    <form action="{% url 'index_login' %}" method="POST">
+    <form action="{% url 'index_login' %}" method="POST" class="form-group">
       {% csrf_token %}
       {{ form.non_field_errors }}
       <div class="fieldWrapper">
@@ -16,7 +16,7 @@
         <label for="{{ form.passwd.id_for_label }}">Hasło:</label>
         {{ form.passwd }}
         <div id="send_button">
-          <input type="submit" value="Zaloguj" class="btn btn-default"/>
+          <input type="submit" value="Zaloguj" class="btn btn-success"/>
         </div>
       </div>
     </form>

@@ -2,19 +2,24 @@
 
 {# ------------------------------------- #}
 {% block content %}
+<div id="content">
 {% if all_users %}
 <h2>Wszyscy użytkownicy obecni w systemie:</h2>
     <ul>
     {% for user in all_users %}
-    <li>{{ user.id }}. <b>Login:</b> {{ user.login }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.full_name }}</li>
+    <li><a href="{% url 'delete_user' user_id=user.id %}">
+      <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
+      {{ user.id }}. <b>Login:</b> {{ user.login }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.full_name }}
+    </li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>Brak uzytkowników do wyświetlenia :()</p>
+    <p>Brak uzytkowników do wyświetlenia :(</p>
 {% endif %}
 <div>
   <hr />
-  <a href="{% url 'add_user' %}">Dodaj nowego użytkownika</a>
+  <a href="{% url 'add_user' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego użytkownika</button></a>
+</div>
 </div>
 {% endblock content %}
 {# ------------------------------------- #}

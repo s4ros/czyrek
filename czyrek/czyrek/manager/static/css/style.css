@@ -33,6 +33,18 @@ html, body {
   justify-content: center;
 }
 
+#content {
+  width: 75%;
+  background: rgba(128, 156, 128, 0.5);
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
 #logging_panel {
   display: flex;
   justify-content: center;

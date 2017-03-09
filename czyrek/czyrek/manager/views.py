@@ -55,3 +55,9 @@ def index_login(request):
         form = LoginForm()
         context = {'username': 's4ros', 'form' : form}
         return render(request, 'index_login.html', context)
+
+
+# delete_user
+def delete_user(request, user_id):
+    User.objects.filter(id=user_id).delete()
+    return redirect('list_users')
