@@ -12,7 +12,6 @@ class User(models.Model):
     full_name = models.CharField(max_length=30, blank=False)
     lastlog = models.DateTimeField(auto_now=True,editable=False)
     permissions = models.IntegerField()
-
     def __str__(self):
         return self.login + " (" + self.email + ")" + " - " + self.full_name
 

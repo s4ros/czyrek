@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import User
+from .models import User, Candidate
 
 #############################################3
 ## Formularz dodawania uzytkownikow
@@ -20,3 +20,16 @@ class LoginForm(forms.ModelForm):
 
 #############################################3
 ## Forularz dodawania Kandydata
+class CandidateAddForm(forms.ModelForm):
+    # TODO: Define other fields here
+
+    class Meta:
+        model = Candidate
+        fields = []
+
+    def __init__(self, *args, **kwargs):
+        super(CandidateAddForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super(CandidateAddForm, self).clean()
+        return cleaned_data
