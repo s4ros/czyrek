@@ -30,7 +30,7 @@ class Candidate(models.Model):
     subject_one = models.ForeignKey(Subjects)
     subject_two = models.ForeignKey(Subjects)
     subject_three = = models.ForeignKey(Subjects)
-    #photo = models.
+    photo = models.CharField()
 
 class Schools(models.Model):
     name = models.CharField(max_length=100)
