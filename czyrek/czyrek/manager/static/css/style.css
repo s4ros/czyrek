@@ -52,7 +52,7 @@ html, body {
   height: 36px;
   display: flex;
   position: fixed;
-  overflow: hidden;
+  /*overflow: hidden;*/
   align-items: center;
   justify-content: center;
   background-color: rgba(128, 158, 128, 0.5);
@@ -60,7 +60,9 @@ html, body {
 }
 
 #topnav #topmenu {
-
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 #logging_panel {

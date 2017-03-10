@@ -47,6 +47,37 @@ def add_user(request):
         return render(request, "add_user.html", context)
 
 
+# index after login
+def index_after_login(request):
+    context = {}
+    return render(request, "index.html", context)
+
+
+# list_candidates
+def list_candidates(request):
+    context = {}
+    return render(request, "list_candidates.html", context)
+
+# list_schools
+def list_schools(request):
+    context = {}
+    return render(request, "list_schools.html", context)
+
+# list_languages
+def list_languages(request):
+    context = {}
+    return render(request, "list_languages.html", context)
+
+# list_profiles
+def list_profiles(request):
+    context = {}
+    return render(request, "list_profiles.html", context)
+
+# list_subjects
+def list_subjects(request):
+    context = {}
+    return render(request, "list_subjects.html", context)
+
 # index_login
 def index_login(request):
     if request.method == 'POST':

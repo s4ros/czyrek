@@ -23,13 +23,13 @@
   {% block topnav %}
   <div id="topnav">
     <div id="topmenu" class="btn-toolbar" role="toolbar">
-      <a href="{% url 'list_users' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-home"></span> Home</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-user"></span> Użytkownicy</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-eye-open"></span> Kandydaci</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-blackboard"></span> Szkoły</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-globe"></span> Języki</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-knight"></span> Profile</button></a>
-      <a href=""><button type="button" class="btn btn-success disabled"><span class="glyphicon glyphicon-briefcase"></span> Przedmioty</button></a>
+      <a href="{% url 'index_after_login' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-home"></span> Home</button></a>
+      <a href="{% url 'list_users' %}"><button class="btn btn-success" type="button"><span class="glyphicon glyphicon-user"></span> Użytkownicy</button></a>
+      <a href="{% url 'list_candidates' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span> Kandydaci</button></a>
+      <a href="{% url 'list_schools' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-blackboard"></span> Szkoły</button></a>
+      <a href="{% url 'list_languages' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-globe"></span> Języki</button></a>
+      <a href="{% url 'list_profiles' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-knight"></span> Profile</button></a>
+      <a href="{% url 'list_subjects' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-briefcase"></span> Przedmioty</button></a>
 
       <a href="{% url 'index_login' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Logout</button></a>
     </div>
