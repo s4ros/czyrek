@@ -7,7 +7,9 @@
 <div id="content">
   <h2>Lista użytkowników obecnych w systemie:</h2>
 <div class="hr_separator">
+  {% if is_admin %}
   <a href="{% url 'add_user' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego użytkownika</button></a>
+  {% endif %}
   <hr />
 </div>
 {% if all_users %}
@@ -70,7 +72,9 @@
 {% endif %}
 <div class="hr_separator">
   <hr />
+  {% if is_admin %}
   <a href="{% url 'add_user' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego użytkownika</button></a>
+  {% endif %}
 </div>
 </div>
 {% endblock content %}
