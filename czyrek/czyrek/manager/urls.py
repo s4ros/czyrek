@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index_login, name='index_login'),
+    url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^index/$', views.index_after_login, name='index_after_login'),
     url(r'^list_users/$', views.list_users, name='list_users'),
     url(r'^add_user/$', views.add_user, name='add_user'),

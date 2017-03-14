@@ -3,8 +3,8 @@
 import hashlib
 ####################
 ## Django imports
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 ####################
 ## forms
 from .forms import AddUserPostForm
@@ -52,9 +52,7 @@ def add_user(request):
 
 # index after login
 def index_after_login(request):
-    context = {}
-    return render(request, "index.html", context)
-
+    return render(request, "index.html")
 
 # list_candidates
 def list_candidates(request):
@@ -83,13 +81,26 @@ def list_subjects(request):
 
 # index_login
 def index_login(request):
+    username = password = ''
     if request.method == 'POST':
-        return redirect('list_users')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'index.html')
+        else:
+            return redirect('index_login')
     else:
         form = LoginForm()
         context = {'form' : form}
         return render(request, 'index_login.html', context)
 
+# user logout
+def logout_user(request):
+    logout(request)
+    context = { 'action': 'logout' }
+    return redirect('index_login')
 
 # delete_user
 def delete_user(request, user_id):

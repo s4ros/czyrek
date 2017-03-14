@@ -10,6 +10,12 @@
   <div id="logging_panel">
     <form action="{% url 'index_login' %}" method="POST" class="form-group">
       {% csrf_token %}
+      {% if form.errors %}
+        <p class=" label label-danger">
+            Your username and password didn't match.
+            Please try again.
+        </p>
+      {% endif %}
       {{ form.non_field_errors }}
       <div class="fieldWrapper">
         <label for="{{ form.username.id_for_label }}">Login:</label>

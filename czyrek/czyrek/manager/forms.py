@@ -10,7 +10,6 @@ class AddUserPostForm(forms.ModelForm):
         model = User
         fields = ('username','password','email','first_name','last_name','is_staff','is_active',)
 
-
 #############################################3
 ## Formularz logowania - homepage
 class LoginForm(forms.ModelForm):
