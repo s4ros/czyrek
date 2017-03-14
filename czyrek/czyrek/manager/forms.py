@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 #############################################3
 ## Formularz dodawania uzytkownikow
 class AddUserPostForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
         fields = ('username','password','email','first_name','last_name','is_staff','is_active',)
@@ -13,7 +14,7 @@ class AddUserPostForm(forms.ModelForm):
 #############################################3
 ## Formularz logowania - homepage
 class LoginForm(forms.ModelForm):
-    passwd = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
         fields = ('username','password',)
