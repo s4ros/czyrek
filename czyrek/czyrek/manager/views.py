@@ -5,6 +5,7 @@ import hashlib
 ## Django imports
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 ####################
 ## forms
 from .forms import AddUserPostForm
@@ -22,12 +23,14 @@ def generateSHA1(text):
 
 ####################
 ## views
+@login_required(login_url='/')
 def list_users(request):
     all_users = User.objects.order_by('username')
     context = { 'all_users' : all_users }
     return render(request, "list_users.html", context)
 
 # add_user
+@login_required(login_url='/')
 def add_user(request):
     if request.method == 'POST':
         print(repr(request))
@@ -51,30 +54,36 @@ def add_user(request):
 
 
 # index after login
+@login_required(login_url='/')
 def index_after_login(request):
     return render(request, "index.html")
 
 # list_candidates
+@login_required(login_url='/')
 def list_candidates(request):
     context = {}
     return render(request, "list_candidates.html", context)
 
 # list_schools
+@login_required(login_url='/')
 def list_schools(request):
     context = {}
     return render(request, "list_schools.html", context)
 
 # list_languages
+@login_required(login_url='/')
 def list_languages(request):
     context = {}
     return render(request, "list_languages.html", context)
 
 # list_profiles
+@login_required(login_url='/')
 def list_profiles(request):
     context = {}
     return render(request, "list_profiles.html", context)
 
 # list_subjects
+@login_required(login_url='/')
 def list_subjects(request):
     context = {}
     return render(request, "list_subjects.html", context)
@@ -97,12 +106,14 @@ def index_login(request):
         return render(request, 'index_login.html', context)
 
 # user logout
+@login_required(login_url='/')
 def logout_user(request):
     logout(request)
     context = { 'action': 'logout' }
     return redirect('index_login')
 
 # delete_user
+@login_required(login_url='/')
 def delete_user(request, user_id):
     User.objects.filter(id=user_id).delete()
     return redirect('list_users')
