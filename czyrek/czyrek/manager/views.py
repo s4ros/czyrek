@@ -20,8 +20,11 @@ from django.contrib.auth.models import User
 def list_users(request):
     all_users = User.objects.order_by('id')
     users_count = all_users.count()
+    # to trzeba bedzie zmienic na permissiony... jak juz beda zaimplementowane
+    is_admin = request.user.is_staff
     context = { 'all_users' : all_users,
-               'users_count' : users_count }
+               'users_count' : users_count,
+               'is_admin' : is_admin }
     return render(request, "list_users.html", context)
 
 ####################
