@@ -12,12 +12,12 @@
       {% csrf_token %}
       {{ form.non_field_errors }}
       <div class="fieldWrapper">
-        <label for="{{ form.login.id_for_label }}">Login:</label>
-        {{ form.login }}
+        <label for="{{ form.username.id_for_label }}">Login:</label>
+        {{ form.username }}
       </div>
       <div class="fieldWrapper">
-        <label for="{{ form.passwd.id_for_label }}">Hasło:</label>
-        {{ form.passwd }}
+        <label for="{{ form.password.id_for_label }}">Hasło:</label>
+        {{ form.password }}
         <div id="send_button">
           <input type="submit" value="Zaloguj" class="btn btn-success"/>
         </div>

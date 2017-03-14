@@ -11,7 +11,7 @@
     {% for user in all_users %}
     <li><a href="{% url 'delete_user' user_id=user.id %}">
       <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
-      {{ user.id }}. <b>Login:</b> {{ user.login }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.full_name }}
+      {{ user.id }}. <b>Login:</b> {{ user.username }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.first_name }} {{ user.last_name }}
     </li>
     {% endfor %}
     </ul>

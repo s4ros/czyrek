@@ -11,7 +11,7 @@ from .forms import AddUserPostForm
 from .forms import LoginForm
 ####################
 ## models
-from .models import User
+from django.contrib.auth.models import User
 
 ####################
 ## functions
@@ -23,7 +23,7 @@ def generateSHA1(text):
 ####################
 ## views
 def list_users(request):
-    all_users = User.objects.order_by('login')
+    all_users = User.objects.order_by('username')
     context = { 'all_users' : all_users }
     return render(request, "list_users.html", context)
 
@@ -34,11 +34,14 @@ def add_user(request):
         form = AddUserPostForm(request.POST)
         if form.is_valid:
             new_user = form.save(commit=False)
-            new_user.login = request.POST['login']
-            new_user.passwd = str(generateSHA1(request.POST['passwd']))
+            new_user.username = request.POST['username']
             new_user.email = request.POST['email']
-            new_user.full_name = request.POST['full_name']
-            new_user.permissions = request.POST['permissions']
+            new_user.set_password(request.POST['password'])
+            new_user.first_name = request.POST['first_name']
+            new_user.last_name = request.POST['last_name']
+            if 'is_staff' in request.POST:
+                new_user.is_staff = True
+            # new_user.permissions = request.POST['permissions']
             new_user.save()
             return redirect('list_users')
     else:
@@ -84,7 +87,7 @@ def index_login(request):
         return redirect('list_users')
     else:
         form = LoginForm()
-        context = {'username': 's4ros', 'form' : form}
+        context = {'form' : form}
         return render(request, 'index_login.html', context)
 
 

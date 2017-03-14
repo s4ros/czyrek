@@ -1,13 +1,14 @@
 from django import forms
 
-from .models import User, Candidate
+from .models import Candidate
+from django.contrib.auth.models import User
 
 #############################################3
 ## Formularz dodawania uzytkownikow
 class AddUserPostForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('login','passwd','email','full_name','permissions',)
+        fields = ('username','password','email','first_name','last_name','is_staff','is_active',)
 
 
 #############################################3
@@ -16,7 +17,7 @@ class LoginForm(forms.ModelForm):
     passwd = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
-        fields = ('login','passwd',)
+        fields = ('username','password',)
 
 #############################################3
 ## Forularz dodawania Kandydata
