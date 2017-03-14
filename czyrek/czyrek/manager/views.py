@@ -1,6 +1,6 @@
 ####################
 ## Python imports
-import hashlib
+
 ####################
 ## Django imports
 from django.shortcuts import render, redirect
@@ -15,20 +15,16 @@ from .forms import LoginForm
 from django.contrib.auth.models import User
 
 ####################
-## functions
-def generateSHA1(text):
-    sha_1 = hashlib.sha1()
-    sha_1.update(text.encode("utf-8"))
-    return sha_1.hexdigest()
-
-####################
 ## views
 @login_required(login_url='/')
 def list_users(request):
-    all_users = User.objects.order_by('username')
-    context = { 'all_users' : all_users }
+    all_users = User.objects.order_by('id')
+    users_count = all_users.count()
+    context = { 'all_users' : all_users,
+               'users_count' : users_count }
     return render(request, "list_users.html", context)
 
+####################
 # add_user
 @login_required(login_url='/')
 def add_user(request):
@@ -52,42 +48,48 @@ def add_user(request):
         context = {'form' : form}
         return render(request, "add_user.html", context)
 
-
+####################
 # index after login
 @login_required(login_url='/')
 def index_after_login(request):
     return render(request, "index.html")
 
+####################
 # list_candidates
 @login_required(login_url='/')
 def list_candidates(request):
     context = {}
     return render(request, "list_candidates.html", context)
 
+####################
 # list_schools
 @login_required(login_url='/')
 def list_schools(request):
     context = {}
     return render(request, "list_schools.html", context)
 
+####################
 # list_languages
 @login_required(login_url='/')
 def list_languages(request):
     context = {}
     return render(request, "list_languages.html", context)
 
+####################
 # list_profiles
 @login_required(login_url='/')
 def list_profiles(request):
     context = {}
     return render(request, "list_profiles.html", context)
 
+####################
 # list_subjects
 @login_required(login_url='/')
 def list_subjects(request):
     context = {}
     return render(request, "list_subjects.html", context)
 
+####################
 # index_login
 def index_login(request):
     username = password = ''
@@ -105,6 +107,7 @@ def index_login(request):
         context = {'form' : form}
         return render(request, 'index_login.html', context)
 
+####################
 # user logout
 @login_required(login_url='/')
 def logout_user(request):
@@ -112,6 +115,7 @@ def logout_user(request):
     context = { 'action': 'logout' }
     return redirect('index_login')
 
+####################
 # delete_user
 @login_required(login_url='/')
 def delete_user(request, user_id):

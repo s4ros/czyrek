@@ -5,23 +5,72 @@
 {# ------------------------------------- #}
 {% block content %}
 <div id="content">
+  <h2>Lista użytkowników obecnych w systemie:</h2>
+<div class="hr_separator">
+  <a href="{% url 'add_user' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego użytkownika</button></a>
+  <hr />
+</div>
 {% if all_users %}
-<h2>Wszyscy użytkownicy obecni w systemie:</h2>
-    <ul>
+      <div class="table">
+        <div class="row header green">
+          <div class="cell">ID</div>
+          <div class="cell">Imię</div>
+          <div class="cell">Nazwisko</div>
+          <div class="cell">Login</div>
+          <div class="cell">Email</div>
+          <div class="cell">Aktywny</div>
+          <div class="cell">Admin</div>
+          <div class="cell">Akcje</div>
+        </div>
     {% for user in all_users %}
-    <li><a href="{% url 'delete_user' user_id=user.id %}">
-      <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
-      {{ user.id }}. <b>Login:</b> {{ user.username }}, <b>email:</b> {{ user.email }}, <b>fullname:</b> {{ user.first_name }} {{ user.last_name }}
-    </li>
+      <div class="row">
+        <div class="cell">{{ user.id }}</div>
+        <div class="cell">{{ user.first_name }}</div>
+        <div class="cell">{{ user.last_name }}</div>
+        <div class="cell">{{ user.username }}</div>
+        <div class="cell">{{ user.email }}</div>
+        <div class="cell">
+          {% if user.is_active %}
+            <span class="glyphicon glyphicon-ok-sign green"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-remove-sign red"></span>
+          {% endif %}
+        </div>
+        <div class="cell">
+          {% if user.is_staff %}
+            <span class="glyphicon glyphicon-ok-sign green"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-remove-sign red"></span>
+          {% endif %}
+        </div>
+        <div class="cell">
+          <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+          <a href="{% url 'delete_user' user_id=user.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
+        </div>
+      </div>
     {% endfor %}
-    </ul>
+      <div class="row header green">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell">Wszystkich: {{ users_count }}</div>
+      </div>
+    </div>
 {% else %}
-    <p><span class="glyphicon glyphicon-minus"></span> Brak uzytkowników do wyświetlenia :(</p>
+    <p><span class="glyphicon glyphicon-minus"></span> Brak użytkowników do wyświetlenia :(</p>
 {% endif %}
-<div>
+<div class="hr_separator">
   <hr />
   <a href="{% url 'add_user' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego użytkownika</button></a>
 </div>
 </div>
 {% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+
+{% endblock scripts %}
 {# ------------------------------------- #}
