@@ -2,6 +2,10 @@ html, body {
   margin: 0;
   padding: 0;
   /*background-color: #000;*/
+  background-image: url(../bg.gif);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #page {
@@ -9,11 +13,8 @@ html, body {
   position: absolute;
   top: 0px;
   bottom: 0px;
-  background-color: #fff;
+  /*background-color: #fff;*/
   width:100%;
-  background-image: url(../bg.gif);
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
