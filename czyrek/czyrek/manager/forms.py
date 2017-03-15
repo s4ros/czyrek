@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Candidate
+from .models import Candidate, Schools, Languages, Subjects
 from django.contrib.auth.models import User
 
 #############################################3
@@ -34,3 +34,24 @@ class CandidateAddForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(CandidateAddForm, self).clean()
         return cleaned_data
+
+## Formularz Szkol
+class SchoolsForm(forms.ModelForm):
+
+    class Meta:
+        model = Schools
+        fields = ('name', 'is_available')
+
+## Formularz Jezykow
+class LanguagesForm(forms.ModelForm):
+
+    class Meta:
+        model = Languages
+        fields = ('name', 'is_available')
+
+## Formularz Przedmiotow
+class SubjectsForm(forms.ModelForm):
+
+    class Meta:
+        model = Subjects
+        fields = ('is_available', 'wage')
