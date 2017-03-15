@@ -20,6 +20,7 @@ class Languages(models.Model):
 ####################
 ## Subjects Model
 class Subjects(models.Model):
+    name = models.CharField(max_length=30)
     is_available = models.BooleanField()
     wage = models.IntegerField()
 
