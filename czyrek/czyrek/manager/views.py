@@ -13,6 +13,7 @@ from .forms import LoginForm
 ####################
 ## models
 from django.contrib.auth.models import User
+from .models import Candidate
 
 ####################
 ## views
@@ -52,6 +53,15 @@ def add_user(request):
         return render(request, "add_user.html", context)
 
 ####################
+# add_candidate
+@login_required(login_url='/')
+def add_candidate(request):
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+
+####################
 # index after login
 @login_required(login_url='/')
 def index_after_login(request):
@@ -61,7 +71,14 @@ def index_after_login(request):
 # list_candidates
 @login_required(login_url='/')
 def list_candidates(request):
-    context = {}
+    all_candidates = Candidate.objects.order_by('id')
+    # candidates_count = all_candidates.count()
+    is_admin = request.user.is_staff
+    context = {
+                # 'all_candidates' : all_candidates,
+            #    'candidates_count' : candidates_count,
+            #    'is_admin' : is_admin
+               }
     return render(request, "list_candidates.html", context)
 
 ####################

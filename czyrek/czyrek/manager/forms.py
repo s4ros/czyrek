@@ -21,16 +21,12 @@ class LoginForm(forms.ModelForm):
 
 #############################################3
 ## Forularz dodawania Kandydata
-class CandidateAddForm(forms.ModelForm):
-    # TODO: Define other fields here
-
-    class Meta:
-        model = Candidate
-        fields = []
-
-    def __init__(self, *args, **kwargs):
-        super(CandidateAddForm, self).__init__(*args, **kwargs)
-
-    def clean(self):
-        cleaned_data = super(CandidateAddForm, self).clean()
-        return cleaned_data
+# class CandidateAddForm(forms.ModelForm):
+#     # TODO: Define other fields here
+#     class Meta:
+#         model = Candidate
+#         fields = ('name', 'surname', 'city', 'address', 'postalcode',
+#                   'voivodeship', 'community', 'phone', 'pesel',
+#                   'birthdate', 'last_school', 'primary_language',
+#                   'secondary_language', 'subject_one', 'subject_two',
+#                   'subject_three', 'photo')

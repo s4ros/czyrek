@@ -37,14 +37,15 @@ class Candidate(models.Model):
     pesel = models.IntegerField()
     birthdate = models.DateField()
     last_school = models.CharField(max_length=100)
-    primary_language = models.ForeignKey(Languages)
-    secondary_language = models.ForeignKey(Languages,related_name="l2")
-    subject_one = models.ForeignKey(Subjects)
-    subject_two = models.ForeignKey(Subjects,related_name="s2")
-    subject_three = models.ForeignKey(Subjects,related_name="s3")
+    # primary_language = models.ForeignKey(Languages, related_name="l1")
+    # secondary_language = models.ForeignKey(Languages,related_name="l2")
+    # subject_one = models.ForeignKey(Subjects, related_name="s1")
+    # subject_two = models.ForeignKey(Subjects,related_name="s2")
+    # subject_three = models.ForeignKey(Subjects,related_name="s3")
     photo = models.CharField(max_length=100)
-    class Meta:
-        unique_together = (("subject_one", "subject_two", "subject_three"),("primary_language","secondary_language"),)
+    # class Meta:
+    #     unique_together = (("subject_one", "subject_two", "subject_three"),("primary_language","secondary_language"),)
+
 ####################
 ## Profiles Model
 class Profiles(models.Model):
