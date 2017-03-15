@@ -19,22 +19,17 @@ class LoginForm(forms.ModelForm):
         model = User
         fields = ('username','password',)
 
-#############################################3
-## Forularz dodawania Kandydata
-# class CandidateAddForm(forms.ModelForm):
-#     # TODO: Define other fields here
-#     class Meta:
-#         model = Candidate
-#         fields = ('name', 'surname', 'city', 'address', 'postalcode',
-#                   'voivodeship', 'community', 'phone', 'pesel',
-#                   'birthdate', 'last_school', 'primary_language',
-#                   'secondary_language', 'subject_one', 'subject_two',
-#                   'subject_three', 'photo')
-class CandidateAddForm(forms.ModelForm):
+############################################3
+# Forularz dodawania Kandydata
+class AddCandidatePostForm(forms.ModelForm):
     # TODO: Define other fields here
     class Meta:
         model = Candidate
-        fields = []
+        fields = ('name', 'surname', 'city', 'address', 'postalcode',
+                  'voivodeship', 'community', 'phone', 'pesel',
+                  'birthdate', 'last_school', 'primary_language',
+                  'secondary_language', 'subject_one', 'subject_two',
+                  'subject_three', 'photo')
 
 ## Formularz Szkol
 class SchoolsForm(forms.ModelForm):

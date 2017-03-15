@@ -5,14 +5,69 @@
 {# ------------------------------------- #}
 {% block content %}
 <div id="content">
-<h2>Lista zdefiniowanych Szkół:</h2>
-    <ul>
-      <li>
-      </li>
-    </ul>
-<div>
-
+  <h2>Dostępne szkoły:</h2>
+<div class="hr_separator">
+  {% if is_admin %}
+  <a href="{% url 'add_school' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego szkołę</button></a>
+  {% endif %}
+  <hr />
+</div>
+{% if all_schools %}
+      <div class="table">
+        <div class="row header green">
+          <div class="cell">ID</div>
+          <div class="cell">Imię</div>
+          <div class="cell">Nazwisko</div>
+          <div class="cell">Miasto</div>
+          <div class="cell">Telefon</div>
+          <div class="cell">PESEL</div>
+          <div class="cell">Data urodzenia</div>
+          <div class="cell">Akcje</div>
+        </div>
+    {% for school in all_schools %}
+      <div class="row">
+        <div class="cell">{{ school.id }}</div>
+        <div class="cell">{{ school.name }}</div>
+        <div class="cell">{{ school.surname }}</div>
+        <div class="cell">{{ school.city }}</div>
+        <div class="cell">{{ school.phone }}</div>
+        <div class="cell">{{ school.pesel }}</div>
+        <div class="cell">{{ school.birthdate }}</div>
+        <div class="cell">
+          {% if is_admin %}
+            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'delete_user' user_id=user.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
+          {% else %}
+            <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>
+            <button type="button" class="btn btn-danger btn-sm disabled"><span class="glyphicon glyphicon-trash"></span> Usuń</button>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+      <div class="row header green">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell">Wszystkich: {{ schools_count }}</div>
+      </div>
+    </div>
+{% else %}
+    <p><span class="glyphicon glyphicon-minus"></span> Brak kandydatów do wyświetlenia :(</p>
+{% endif %}
+<div class="hr_separator">
+  <hr />
+  {% if is_admin %}
+  <a href="{% url 'add_school' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego szkołę</button></a>
+  {% endif %}
 </div>
 </div>
 {% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+
+{% endblock scripts %}
 {# ------------------------------------- #}
