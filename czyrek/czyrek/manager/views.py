@@ -8,8 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 ####################
 ## forms
-from .forms import AddUserPostForm, AddCandidatePostForm
-from .forms import LoginForm
+from .forms import AddUserPostForm, AddCandidatePostForm, SchoolsForm, ProfilesForm
+from .forms import LoginForm, LanguagesForm, SubjectsForm
 ####################
 ## models
 from django.contrib.auth.models import User
@@ -169,12 +169,42 @@ def delete_candidate(request, candidate_id):
 @login_required(login_url='/')
 def list_schools(request):
     all_schools = Schools.objects.order_by('id')
+    schools_count = all_schools.count()
     is_admin = request.user.is_staff
     context = {
-        'all_schools' : all_schools,
-        'is_admin' : is_admin
+    'all_schools' : all_schools,
+    'schools_count' : schools_count,
+    'is_admin' : is_admin
     }
     return render(request, "list_schools.html", context)
+
+####################
+## add_school
+@login_required(login_url='/')
+def add_school(request):
+    if request.method == 'POST':
+        form = SchoolsForm(request.POST)
+        if form.is_valid():
+            new_school = form.save(commit=False)
+            new_school.name = request.POST['name']
+            if request.POST['is_available'] == "on":
+                new_school.is_available = True
+            else:
+                new_school.is_available = False
+            new_school.save()
+            return redirect('list_schools')
+    else:
+        form = SchoolsForm()
+        context = {'form' : form}
+        return render(request, "add_school.html", context)
+
+####################
+# delete_school
+@login_required(login_url='/')
+def delete_school(request, school_id):
+    Schools.objects.filter(id=school_id).delete()
+    return redirect('list_schools')
+
 
 ##############################################################################
 # LANGUAGES
@@ -184,9 +214,43 @@ def list_schools(request):
 # list_languages
 @login_required(login_url='/')
 def list_languages(request):
-    context = {}
+    all_languages = Languages.objects.order_by('id')
+    languages_count = all_languages.count()
+    is_admin = request.user.is_staff
+    context = {
+        'all_languages' : all_languages,
+        'is_admin' : is_admin,
+        'languages_count' : languages_count
+    }
     return render(request, "list_languages.html", context)
 
+####################
+# delete_language
+@login_required(login_url='/')
+def delete_language(request, language_id):
+    Languages.objects.filter(id=language_id).delete()
+    return redirect('list_languages')
+
+####################
+## add_language
+@login_required(login_url='/')
+def add_language(request):
+    if request.method == 'POST':
+        form = LanguagesForm(request.POST)
+        if form.is_valid():
+            new_lang = form.save(commit=False)
+            new_lang.name = request.POST['name']
+            new_lang.school_id = Schools.objects.get(pk=request.POST['school_id'])
+            if request.POST['is_available'] == "on":
+                new_lang.is_available = True
+            else:
+                new_lang.is_available = False
+            new_lang.save()
+            return redirect('list_languages')
+    else:
+        form = LanguagesForm()
+        context = {'form' : form}
+        return render(request, "add_language.html", context)
 ##############################################################################
 # PROFILES
 ##############################################################################
@@ -195,9 +259,43 @@ def list_languages(request):
 # list_profiles
 @login_required(login_url='/')
 def list_profiles(request):
-    context = {}
+    all_profiles = Profiles.objects.order_by('id')
+    profiles_count = all_profiles.count()
+    is_admin = request.user.is_staff
+    context = {
+        'all_profiles' : all_profiles,
+        'is_admin' : is_admin,
+        'profiles_count' : profiles_count
+    }
     return render(request, "list_profiles.html", context)
 
+####################
+# delete_profile
+@login_required(login_url='/')
+def delete_profile(request, profile_id):
+    Profiles.objects.filter(id=profile_id).delete()
+    return redirect('list_profiles')
+
+####################
+## add_profile
+@login_required(login_url='/')
+def add_profile(request):
+    if request.method == 'POST':
+        form = ProfilesForm(request.POST)
+        if form.is_valid():
+            new_object = form.save(commit=False)
+            new_object.name = request.POST['name']
+            new_object.school_id = Schools.objects.get(pk=request.POST['school_id'])
+            if request.POST['is_available'] == "on":
+                new_object.is_available = True
+            else:
+                new_object.is_available = False
+            new_object.save()
+            return redirect('list_profiles')
+    else:
+        form = ProfilesForm
+        context = {'form' : form}
+        return render(request, "add_profile.html", context)
 ##############################################################################
 # SUBJECTS
 ##############################################################################
@@ -206,5 +304,40 @@ def list_profiles(request):
 # list_subjects
 @login_required(login_url='/')
 def list_subjects(request):
-    context = {}
+    all_subjects = Subjects.objects.order_by('id')
+    subjects_count = all_subjects.count()
+    is_admin = request.user.is_staff
+    context = {
+        'all_subjects' : all_subjects,
+        'is_admin' : is_admin,
+        'subjects_count' : subjects_count
+    }
     return render(request, "list_subjects.html", context)
+
+####################
+# delete_subject
+@login_required(login_url='/')
+def delete_subject(request, subject_id):
+    Subjects.objects.filter(id=subject_id).delete()
+    return redirect('list_subjects')
+
+####################
+## add_subject
+@login_required(login_url='/')
+def add_subject(request):
+    if request.method == 'POST':
+        form = SubjectsForm(request.POST)
+        if form.is_valid():
+            new_object = form.save(commit=False)
+            new_object.name = request.POST['name']
+            new_object.wage = request.POST['wage']
+            if request.POST['is_available'] == "on":
+                new_object.is_available = True
+            else:
+                new_object.is_available = False
+            new_object.save()
+            return redirect('list_subjects')
+    else:
+        form = SubjectsForm()
+        context = {'form' : form}
+        return render(request, "add_subject.html", context)

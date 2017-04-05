@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Candidate, Schools, Languages, Subjects
+from .models import Candidate, Schools, Languages, Subjects, Profiles
 from django.contrib.auth.models import User
 
 #############################################3
@@ -41,10 +41,16 @@ class SchoolsForm(forms.ModelForm):
 class LanguagesForm(forms.ModelForm):
     class Meta:
         model = Languages
-        fields = ('name', 'is_available')
+        fields = ('name', 'school_id', 'is_available')
 
 ## Formularz Przedmiotow
 class SubjectsForm(forms.ModelForm):
     class Meta:
         model = Subjects
-        fields = ('name','is_available', 'wage')
+        fields = ('name', 'wage', 'is_available')
+
+## Formularz profili
+class ProfilesForm(forms.ModelForm):
+    class Meta:
+        model = Profiles
+        fields = ('name', 'school_id', 'is_available')

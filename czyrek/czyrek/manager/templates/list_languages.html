@@ -5,14 +5,57 @@
 {# ------------------------------------- #}
 {% block content %}
 <div id="content">
-<h2>Dostępne języki:</h2>
-    <ul>
-      <li>
-      </li>
-    </ul>
-<div>
-
+  <h2>Dostępne języki:</h2>
+<div class="hr_separator">
+  {% if is_admin %}
+  <a href="{% url 'add_language' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy język</button></a>
+  {% endif %}
+  <hr />
+</div>
+{% if all_languages %}
+      <div class="table">
+        <div class="row header green">
+          <div class="cell">ID</div>
+          <div class="cell">Język obcy</div>
+          <div class="cell">Szkoła</div>
+          <div class="cell">Akcje</div>
+        </div>
+    {% for language in all_languages %}
+      <div class="row">
+        <div class="cell">{{ language.id }}</div>
+        <div class="cell">{{ language.name }}</div>
+        <div class="cell">{{ language.school_id.name }}</div>
+        <div class="cell">
+          {% if is_admin %}
+            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'delete_language' language_id=language.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
+          {% else %}
+            <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>
+            <button type="button" class="btn btn-danger btn-sm disabled"><span class="glyphicon glyphicon-trash"></span> Usuń</button>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+      <div class="row header green">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell">Wszystkich: {{ languages_count }}</div>
+      </div>
+    </div>
+{% else %}
+    <p><span class="glyphicon glyphicon-minus"></span> Brak języków do wyświetlenia :(</p>
+{% endif %}
+<div class="hr_separator">
+  <hr />
+  {% if is_admin %}
+  <a href="{% url 'add_language' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy język</button></a>
+  {% endif %}
 </div>
 </div>
 {% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+
+{% endblock scripts %}
 {# ------------------------------------- #}

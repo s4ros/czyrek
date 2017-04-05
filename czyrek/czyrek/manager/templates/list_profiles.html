@@ -5,14 +5,60 @@
 {# ------------------------------------- #}
 {% block content %}
 <div id="content">
-<h2>Lista dostępnych profili kształcenia w szkołach:</h2>
-    <ul>
-      <li>
-      </li>
-    </ul>
-<div>
-
+  <h2>Dostępne profile:</h2>
+<div class="hr_separator">
+  {% if is_admin %}
+  <a href="{% url 'add_profile' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy profil</button></a>
+  {% endif %}
+  <hr />
+</div>
+{% if all_profiles %}
+      <div class="table">
+        <div class="row header green">
+          <div class="cell">ID</div>
+          <div class="cell">Nazwa profilu</div>
+          <div class="cell">Szkoła</div>
+          <div class="cell">Aktywny</div>
+          <div class="cell">Akcje</div>
+        </div>
+    {% for profile in all_profiles %}
+      <div class="row">
+        <div class="cell">{{ profile.id }}</div>
+        <div class="cell">{{ profile.name }}</div>
+        <div class="cell">{{ profile.school_id.name }}</div>
+        <div class="cell">{{ profile.is_available }}</div>
+        <div class="cell">
+          {% if is_admin %}
+            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'delete_profile' profile_id=profile.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
+          {% else %}
+            <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>
+            <button type="button" class="btn btn-danger btn-sm disabled"><span class="glyphicon glyphicon-trash"></span> Usuń</button>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+      <div class="row header green">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell">Wszystkich: {{ profiles_count }}</div>
+      </div>
+    </div>
+{% else %}
+    <p><span class="glyphicon glyphicon-minus"></span> Brak profili do wyświetlenia :(</p>
+{% endif %}
+<div class="hr_separator">
+  <hr />
+  {% if is_admin %}
+  <a href="{% url 'add_school' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy profil</button></a>
+  {% endif %}
 </div>
 </div>
 {% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+
+{% endblock scripts %}
 {# ------------------------------------- #}

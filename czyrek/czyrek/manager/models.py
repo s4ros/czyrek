@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
 ####################
 ## Django imports
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 ####################
 ## Schools Model
+@python_2_unicode_compatible
 class Schools(models.Model):
     name = models.CharField(max_length=100)
     is_available = models.BooleanField()
@@ -14,10 +16,11 @@ class Schools(models.Model):
 
 ####################
 ## Languages Model
+@python_2_unicode_compatible
 class Languages(models.Model):
     #nie wiem czy po tym bedzie schools?
-    school_id = models.ForeignKey(Schools)
     name = models.CharField(max_length=30)
+    school_id = models.ForeignKey(Schools)
     is_available = models.BooleanField()
 
     def __str__(self):
@@ -25,16 +28,18 @@ class Languages(models.Model):
 
 ####################
 ## Subjects Model
+@python_2_unicode_compatible
 class Subjects(models.Model):
     name = models.CharField(max_length=30)
-    is_available = models.BooleanField()
     wage = models.IntegerField()
+    is_available = models.BooleanField()
 
     def __str__(self):
         return self.name
 
 ####################
 ## Candidate Model
+@python_2_unicode_compatible
 class Candidate(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
@@ -58,9 +63,10 @@ class Candidate(models.Model):
         return self.name+" "+self.surname+" ("+str(self.pesel)+")"
 ####################
 ## Profiles Model
+@python_2_unicode_compatible
 class Profiles(models.Model):
-    school_id = models.ForeignKey(Schools)
     name = models.CharField(max_length=30)
+    school_id = models.ForeignKey(Schools)
     is_available = models.BooleanField()
 
     def __str__(self):
