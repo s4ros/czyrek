@@ -1,22 +1,22 @@
 ####################
-## Python imports
+# Python imports
 
 ####################
-## Django imports
+# Django imports
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 ####################
-## forms
+# forms
 from .forms import AddUserPostForm, AddCandidatePostForm, SchoolsForm, ProfilesForm
 from .forms import LoginForm, LanguagesForm, SubjectsForm
 ####################
-## models
+# models
 from django.contrib.auth.models import User
 from .models import Candidate, Schools, Profiles, Languages, Subjects
 
 ##############################################################################
-## views
+# views
 ##############################################################################
 
 ##############################################################################
@@ -25,6 +25,8 @@ from .models import Candidate, Schools, Profiles, Languages, Subjects
 
 ####################
 # index_login
+
+
 def index_login(request):
     username = password = ''
     if request.method == 'POST':
@@ -38,21 +40,25 @@ def index_login(request):
             return redirect('index_login')
     else:
         form = LoginForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, 'index_login.html', context)
 
 ####################
 # index after login
+
+
 @login_required(login_url='/')
 def index_after_login(request):
     return render(request, "index.html")
 
 ####################
 # user logout
+
+
 @login_required(login_url='/')
 def logout_user(request):
     logout(request)
-    context = { 'action': 'logout' }
+    context = {'action': 'logout'}
     return redirect('index_login')
 
 ##############################################################################
@@ -61,19 +67,23 @@ def logout_user(request):
 
 ####################
 # list_users
+
+
 @login_required(login_url='/')
 def list_users(request):
     all_users = User.objects.order_by('id')
     users_count = all_users.count()
     # to trzeba bedzie zmienic na permissiony... jak juz beda zaimplementowane
     is_admin = request.user.is_staff
-    context = { 'all_users' : all_users,
-               'users_count' : users_count,
-               'is_admin' : is_admin }
+    context = {'all_users': all_users,
+               'users_count': users_count,
+               'is_admin': is_admin}
     return render(request, "list_users.html", context)
 
 ####################
 # add_user
+
+
 @login_required(login_url='/')
 def add_user(request):
     if request.method == 'POST':
@@ -92,11 +102,13 @@ def add_user(request):
             return redirect('list_users')
     else:
         form = AddUserPostForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_user.html", context)
 
 ####################
 # delete_user
+
+
 @login_required(login_url='/')
 def delete_user(request, user_id):
     User.objects.filter(id=user_id).delete()
@@ -108,20 +120,24 @@ def delete_user(request, user_id):
 
 ####################
 # list_candidates
+
+
 @login_required(login_url='/')
 def list_candidates(request):
     all_candidates = Candidate.objects.order_by('id')
     candidates_count = all_candidates.count()
     is_admin = request.user.is_staff
     context = {
-                'all_candidates' : all_candidates,
-               'candidates_count' : candidates_count,
-               'is_admin' : is_admin
-               }
+        'all_candidates': all_candidates,
+        'candidates_count': candidates_count,
+        'is_admin': is_admin
+    }
     return render(request, "list_candidates.html", context)
 
 ####################
 # add_candidate
+
+
 @login_required(login_url='/')
 def add_candidate(request):
     if request.method == 'POST':
@@ -140,27 +156,34 @@ def add_candidate(request):
             new_candidate.birthdate = request.POST['birthdate']
             new_candidate.last_school = request.POST['last_school']
             # new_candidate.primary_language = request.POST['primary_language']
-            new_candidate.primary_language = Languages.objects.get(pk=request.POST['primary_language'])
+            new_candidate.primary_language = Languages.objects.get(
+                pk=request.POST['primary_language'])
             # new_candidate.secondary_language = request.POST['secondary_language']
-            new_candidate.secondary_language = Languages.objects.get(pk=request.POST['secondary_language'])
+            new_candidate.secondary_language = Languages.objects.get(
+                pk=request.POST['secondary_language'])
             # new_candidate.subject_one = request.POST['subject_one']
-            new_candidate.subject_one = Subjects.objects.get(pk=request.POST['subject_one'])
+            new_candidate.subject_one = Subjects.objects.get(
+                pk=request.POST['subject_one'])
             # new_candidate.subject_two = request.POST['subject_two']
-            new_candidate.subject_two = Subjects.objects.get(pk=request.POST['subject_two'])
+            new_candidate.subject_two = Subjects.objects.get(
+                pk=request.POST['subject_two'])
             # new_candidate.subject_three = request.POST['subject_three']
-            new_candidate.subject_three = Subjects.objects.get(pk=request.POST['subject_three'])
+            new_candidate.subject_three = Subjects.objects.get(
+                pk=request.POST['subject_three'])
             new_candidate.photo = request.POST['photo']
             new_candidate.save()
             return redirect('list_candidates')
         else:
-            return render(request, "add_candidate.html", {'form':form})
+            return render(request, "add_candidate.html", {'form': form})
     else:
         form = AddCandidatePostForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_candidate.html", context)
 
 ####################
 # delete_candidate
+
+
 def delete_candidate(request, candidate_id):
     Candidate.objects.filter(id=candidate_id).delete()
     return redirect('list_candidates')
@@ -171,20 +194,24 @@ def delete_candidate(request, candidate_id):
 
 ####################
 # list_schools
+
+
 @login_required(login_url='/')
 def list_schools(request):
     all_schools = Schools.objects.order_by('id')
     schools_count = all_schools.count()
     is_admin = request.user.is_staff
     context = {
-    'all_schools' : all_schools,
-    'schools_count' : schools_count,
-    'is_admin' : is_admin
+        'all_schools': all_schools,
+        'schools_count': schools_count,
+        'is_admin': is_admin
     }
     return render(request, "list_schools.html", context)
 
 ####################
-## add_school
+# add_school
+
+
 @login_required(login_url='/')
 def add_school(request):
     if request.method == 'POST':
@@ -200,11 +227,13 @@ def add_school(request):
             return redirect('list_schools')
     else:
         form = SchoolsForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_school.html", context)
 
 ####################
 # delete_school
+
+
 @login_required(login_url='/')
 def delete_school(request, school_id):
     Schools.objects.filter(id=school_id).delete()
@@ -223,21 +252,25 @@ def list_languages(request):
     languages_count = all_languages.count()
     is_admin = request.user.is_staff
     context = {
-        'all_languages' : all_languages,
-        'is_admin' : is_admin,
-        'languages_count' : languages_count
+        'all_languages': all_languages,
+        'is_admin': is_admin,
+        'languages_count': languages_count
     }
     return render(request, "list_languages.html", context)
 
 ####################
 # delete_language
+
+
 @login_required(login_url='/')
 def delete_language(request, language_id):
     Languages.objects.filter(id=language_id).delete()
     return redirect('list_languages')
 
 ####################
-## add_language
+# add_language
+
+
 @login_required(login_url='/')
 def add_language(request):
     if request.method == 'POST':
@@ -245,7 +278,8 @@ def add_language(request):
         if form.is_valid():
             new_lang = form.save(commit=False)
             new_lang.name = request.POST['name']
-            new_lang.school_id = Schools.objects.get(pk=request.POST['school_id'])
+            new_lang.school_id = Schools.objects.get(
+                pk=request.POST['school_id'])
             if request.POST['is_available'] == "on":
                 new_lang.is_available = True
             else:
@@ -254,7 +288,7 @@ def add_language(request):
             return redirect('list_languages')
     else:
         form = LanguagesForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_language.html", context)
 ##############################################################################
 # PROFILES
@@ -262,27 +296,33 @@ def add_language(request):
 
 ####################
 # list_profiles
+
+
 @login_required(login_url='/')
 def list_profiles(request):
     all_profiles = Profiles.objects.order_by('id')
     profiles_count = all_profiles.count()
     is_admin = request.user.is_staff
     context = {
-        'all_profiles' : all_profiles,
-        'is_admin' : is_admin,
-        'profiles_count' : profiles_count
+        'all_profiles': all_profiles,
+        'is_admin': is_admin,
+        'profiles_count': profiles_count
     }
     return render(request, "list_profiles.html", context)
 
 ####################
 # delete_profile
+
+
 @login_required(login_url='/')
 def delete_profile(request, profile_id):
     Profiles.objects.filter(id=profile_id).delete()
     return redirect('list_profiles')
 
 ####################
-## add_profile
+# add_profile
+
+
 @login_required(login_url='/')
 def add_profile(request):
     if request.method == 'POST':
@@ -290,7 +330,8 @@ def add_profile(request):
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.name = request.POST['name']
-            new_object.school_id = Schools.objects.get(pk=request.POST['school_id'])
+            new_object.school_id = Schools.objects.get(
+                pk=request.POST['school_id'])
             if request.POST['is_available'] == "on":
                 new_object.is_available = True
             else:
@@ -299,7 +340,7 @@ def add_profile(request):
             return redirect('list_profiles')
     else:
         form = ProfilesForm
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_profile.html", context)
 ##############################################################################
 # SUBJECTS
@@ -307,27 +348,33 @@ def add_profile(request):
 
 ####################
 # list_subjects
+
+
 @login_required(login_url='/')
 def list_subjects(request):
     all_subjects = Subjects.objects.order_by('id')
     subjects_count = all_subjects.count()
     is_admin = request.user.is_staff
     context = {
-        'all_subjects' : all_subjects,
-        'is_admin' : is_admin,
-        'subjects_count' : subjects_count
+        'all_subjects': all_subjects,
+        'is_admin': is_admin,
+        'subjects_count': subjects_count
     }
     return render(request, "list_subjects.html", context)
 
 ####################
 # delete_subject
+
+
 @login_required(login_url='/')
 def delete_subject(request, subject_id):
     Subjects.objects.filter(id=subject_id).delete()
     return redirect('list_subjects')
 
 ####################
-## add_subject
+# add_subject
+
+
 @login_required(login_url='/')
 def add_subject(request):
     if request.method == 'POST':
@@ -345,5 +392,5 @@ def add_subject(request):
             return redirect('list_subjects')
     else:
         form = SubjectsForm()
-        context = {'form' : form}
+        context = {'form': form}
         return render(request, "add_subject.html", context)

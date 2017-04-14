@@ -4,13 +4,17 @@ from django import forms
 from .models import Candidate, Schools, Languages, Subjects, Profiles
 from django.contrib.auth.models import User
 
-#############################################3
-## Formularz dodawania uzytkownikow
+# 3
+# Formularz dodawania uzytkownikow
+
+
 class AddUserPostForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
+
     class Meta:
         model = User
-        fields = ('username','password','email','first_name','last_name','is_staff','is_active',)
+        fields = ('username', 'password', 'email', 'first_name',
+                  'last_name', 'is_staff', 'is_active',)
         labels = {
             'username': 'Nazwa użytkownika',
             # 'password': 'Hasło',
@@ -21,19 +25,24 @@ class AddUserPostForm(forms.ModelForm):
             'is_active': 'Aktywny?',
         }
 
-#############################################3
-## Formularz logowania - homepage
+# 3
+# Formularz logowania - homepage
+
+
 class LoginForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
+
     class Meta:
         model = User
-        fields = ('username','password',)
+        fields = ('username', 'password',)
         labels = {
             'username': 'Nazwa użytkownika',
         }
 
-############################################3
+# 3
 # Forularz dodawania Kandydata
+
+
 class AddCandidatePostForm(forms.ModelForm):
     # TODO: Define other fields here
     class Meta:
@@ -63,7 +72,9 @@ class AddCandidatePostForm(forms.ModelForm):
             'photo': 'Zdjęcie',
         }
 
-## Formularz Szkol
+# Formularz Szkol
+
+
 class SchoolsForm(forms.ModelForm):
     class Meta:
         model = Schools
@@ -73,7 +84,9 @@ class SchoolsForm(forms.ModelForm):
             'is_available': 'Dostępna?'
         }
 
-## Formularz Jezykow
+# Formularz Jezykow
+
+
 class LanguagesForm(forms.ModelForm):
     class Meta:
         model = Languages
@@ -84,11 +97,13 @@ class LanguagesForm(forms.ModelForm):
             'is_available': 'Dostępny?'
         }
 
-## Formularz Przedmiotow
+# Formularz Przedmiotow
+
+
 class SubjectsForm(forms.ModelForm):
     class Meta:
         model = Subjects
-        fields = ('name', 'wage', 'school','is_available')
+        fields = ('name', 'wage', 'school', 'is_available')
         labels = {
             'name': 'Nazwa Przedmiotu',
             'wage': 'Liczba punktów za przedmiot',
@@ -96,7 +111,9 @@ class SubjectsForm(forms.ModelForm):
             'is_available': 'Dostępny?'
         }
 
-## Formularz profili
+# Formularz profili
+
+
 class ProfilesForm(forms.ModelForm):
     class Meta:
         model = Profiles

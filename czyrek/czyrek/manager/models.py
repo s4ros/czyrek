@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 ####################
-## Django imports
+# Django imports
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 
 ####################
-## Schools Model
+# Schools Model
+
+
 @python_2_unicode_compatible
 class Schools(models.Model):
     name = models.CharField(max_length=100)
@@ -16,10 +18,12 @@ class Schools(models.Model):
         return self.name
 
 ####################
-## Languages Model
+# Languages Model
+
+
 @python_2_unicode_compatible
 class Languages(models.Model):
-    #nie wiem czy po tym bedzie schools?
+    # nie wiem czy po tym bedzie schools?
     name = models.CharField(max_length=30)
     school_id = models.ForeignKey(Schools)
     is_available = models.BooleanField()
@@ -28,7 +32,9 @@ class Languages(models.Model):
         return self.name
 
 ####################
-## Subjects Model
+# Subjects Model
+
+
 @python_2_unicode_compatible
 class Subjects(models.Model):
     name = models.CharField(max_length=30)
@@ -40,7 +46,9 @@ class Subjects(models.Model):
         return self.name
 
 ####################
-## Candidate Model
+# Candidate Model
+
+
 @python_2_unicode_compatible
 class Candidate(models.Model):
     name = models.CharField(max_length=50)
@@ -55,16 +63,18 @@ class Candidate(models.Model):
     birthdate = models.DateField()
     last_school = models.CharField(max_length=100)
     primary_language = models.ForeignKey(Languages, related_name="l1")
-    secondary_language = models.ForeignKey(Languages,related_name="l2")
+    secondary_language = models.ForeignKey(Languages, related_name="l2")
     subject_one = models.ForeignKey(Subjects, related_name="s1")
-    subject_two = models.ForeignKey(Subjects,related_name="s2")
-    subject_three = models.ForeignKey(Subjects,related_name="s3")
+    subject_two = models.ForeignKey(Subjects, related_name="s2")
+    subject_three = models.ForeignKey(Subjects, related_name="s3")
     photo = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name+" "+self.surname+" ("+str(self.pesel)+")"
+        return self.name + " " + self.surname + " (" + str(self.pesel) + ")"
 ####################
-## Profiles Model
+# Profiles Model
+
+
 @python_2_unicode_compatible
 class Profiles(models.Model):
     name = models.CharField(max_length=30)
