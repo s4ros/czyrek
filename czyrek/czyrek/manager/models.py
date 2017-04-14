@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 ####################
 ## Django imports
@@ -32,6 +33,7 @@ class Languages(models.Model):
 class Subjects(models.Model):
     name = models.CharField(max_length=30)
     wage = models.IntegerField()
+    school = models.ForeignKey(Schools)
     is_available = models.BooleanField()
 
     def __str__(self):
@@ -52,11 +54,11 @@ class Candidate(models.Model):
     pesel = models.IntegerField()
     birthdate = models.DateField()
     last_school = models.CharField(max_length=100)
-    primary_language = models.ManyToManyField(Languages, related_name="l1")
-    secondary_language = models.ManyToManyField(Languages,related_name="l2")
-    subject_one = models.ManyToManyField(Subjects, related_name="s1")
-    subject_two = models.ManyToManyField(Subjects,related_name="s2")
-    subject_three = models.ManyToManyField(Subjects,related_name="s3")
+    primary_language = models.ForeignKey(Languages, related_name="l1")
+    secondary_language = models.ForeignKey(Languages,related_name="l2")
+    subject_one = models.ForeignKey(Subjects, related_name="s1")
+    subject_two = models.ForeignKey(Subjects,related_name="s2")
+    subject_three = models.ForeignKey(Subjects,related_name="s3")
     photo = models.CharField(max_length=100)
 
     def __str__(self):

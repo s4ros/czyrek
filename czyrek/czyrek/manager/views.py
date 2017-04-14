@@ -139,11 +139,16 @@ def add_candidate(request):
             new_candidate.pesel = request.POST['pesel']
             new_candidate.birthdate = request.POST['birthdate']
             new_candidate.last_school = request.POST['last_school']
-            new_candidate.primary_language = request.POST['primary_language']
-            new_candidate.secondary_language = request.POST['secondary_language']
-            new_candidate.subject_one = request.POST['subject_one']
-            new_candidate.subject_two = request.POST['subject_two']
-            new_candidate.subject_three = request.POST['subject_three']
+            # new_candidate.primary_language = request.POST['primary_language']
+            new_candidate.primary_language = Languages.objects.get(pk=request.POST['primary_language'])
+            # new_candidate.secondary_language = request.POST['secondary_language']
+            new_candidate.secondary_language = Languages.objects.get(pk=request.POST['secondary_language'])
+            # new_candidate.subject_one = request.POST['subject_one']
+            new_candidate.subject_one = Subjects.objects.get(pk=request.POST['subject_one'])
+            # new_candidate.subject_two = request.POST['subject_two']
+            new_candidate.subject_two = Subjects.objects.get(pk=request.POST['subject_two'])
+            # new_candidate.subject_three = request.POST['subject_three']
+            new_candidate.subject_three = Subjects.objects.get(pk=request.POST['subject_three'])
             new_candidate.photo = request.POST['photo']
             new_candidate.save()
             return redirect('list_candidates')
@@ -330,6 +335,7 @@ def add_subject(request):
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.name = request.POST['name']
+            new_object.school = Schools.objects.get(pk=request.POST['school'])
             new_object.wage = request.POST['wage']
             if request.POST['is_available'] == "on":
                 new_object.is_available = True
