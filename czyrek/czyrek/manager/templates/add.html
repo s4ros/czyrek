@@ -5,11 +5,11 @@
 {# ------------------------------------- #}
 {% block content %}
 <div id="content">
-<h1>Dodaj nowego użytkownika</h1>
+<h1>{{ message_add_new }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'add_school' %}" method="post" class="form-group">
+<form action="{{ form_action_view }}" method="post" class="form-group">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Dodaj" class="btn btn-success"/>

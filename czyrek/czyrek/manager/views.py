@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ####################
 # Python imports
 
@@ -102,8 +103,11 @@ def add_user(request):
             return redirect('list_users')
     else:
         form = AddUserPostForm()
-        context = {'form': form}
-        return render(request, "add_user.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nowego użytkownika',
+                   'form_action_view': 'add_user'
+                   }
+        return render(request, "add.html", context)
 
 ####################
 # delete_user
@@ -174,11 +178,14 @@ def add_candidate(request):
             new_candidate.save()
             return redirect('list_candidates')
         else:
-            return render(request, "add_candidate.html", {'form': form})
+            return render(request, "add.html", {'form': form, 'message_add_new': u'Dodja nowego Kandydata', 'form_action_view': 'add_candidate'})
     else:
         form = AddCandidatePostForm()
-        context = {'form': form}
-        return render(request, "add_candidate.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nowego Kandydata',
+                   'form_action_view': 'add_candidate'
+                   }
+        return render(request, "add.html", context)
 
 ####################
 # delete_candidate
@@ -227,8 +234,11 @@ def add_school(request):
             return redirect('list_schools')
     else:
         form = SchoolsForm()
-        context = {'form': form}
-        return render(request, "add_school.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nową Szkołę',
+                   'form_action_view': 'add_school'
+                   }
+        return render(request, "add.html", context)
 
 ####################
 # delete_school
@@ -288,8 +298,11 @@ def add_language(request):
             return redirect('list_languages')
     else:
         form = LanguagesForm()
-        context = {'form': form}
-        return render(request, "add_language.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nowy Język',
+                   'form_action_view': 'add_language'
+                   }
+        return render(request, "add.html", context)
 ##############################################################################
 # PROFILES
 ##############################################################################
@@ -340,8 +353,11 @@ def add_profile(request):
             return redirect('list_profiles')
     else:
         form = ProfilesForm
-        context = {'form': form}
-        return render(request, "add_profile.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nowy Profil',
+                   'form_action_view': 'add_profile'
+                   }
+        return render(request, "add.html", context)
 ##############################################################################
 # SUBJECTS
 ##############################################################################
@@ -392,5 +408,8 @@ def add_subject(request):
             return redirect('list_subjects')
     else:
         form = SubjectsForm()
-        context = {'form': form}
-        return render(request, "add_subject.html", context)
+        context = {'form': form,
+                   'message_add_new': u'Dodaj nowy Przedimot',
+                   'form_action_view': 'add_subject'
+                   }
+        return render(request, "add.html", context)

@@ -10,3 +10,6 @@ Now run
   > source bin/activate
 ```
 So be so kind and execute in your shell `source bin/activate` to start working with our project.
+
+### First run
+You can use `czyrek/reset_db.sh` script to initiate the database and launch Django devserver.
