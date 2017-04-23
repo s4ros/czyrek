@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 ####################
 # forms
 from .forms import AddUserPostForm, AddCandidatePostForm, SchoolsForm, ProfilesForm
-from .forms import LoginForm, LanguagesForm, SubjectsForm
+from .forms import LoginForm, LanguagesForm, SubjectsForm, EditUserForm
 ####################
 # models
 from django.contrib.auth.models import User
@@ -122,6 +122,25 @@ def add_user(request):
 def delete_user(request, user_id):
     User.objects.filter(id=user_id).delete()
     return redirect('list_users')
+
+####################
+# edit user
+@login_required(login_url='/')
+def edit_user(request, user_id):
+    user_instance = User.objects.get(pk=user_id)
+    if request.method == 'POST':
+        form_data = EditUserForm(request.POST, instance=user_instance)
+        form_data.save()
+        return redirect('list_users')
+    else:
+        form = EditUserForm(instance=user_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj użytkownika {}'.format(user_instance.username),
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_user/{}'.format(user_instance.id),
+        }
+        return render(request, "add.html", context)
 
 ##############################################################################
 # CANDIDATES

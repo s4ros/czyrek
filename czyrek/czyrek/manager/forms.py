@@ -25,6 +25,24 @@ class AddUserPostForm(forms.ModelForm):
             'is_active': 'Aktywny?',
         }
 
+class EditUserForm(forms.ModelForm):
+    # password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name',
+                  'last_name', 'is_staff', 'is_active',)
+        labels = {
+            'username': 'Nazwa użytkownika',
+            # 'password': 'Hasło',
+            'email': 'Adres E-Mail',
+            'first_name': 'Imię',
+            'last_name': 'Nazwisko',
+            'is_staff': 'Uprawnienia administratora',
+            'is_active': 'Aktywny?',
+        }
+
+
 # 3
 # Formularz logowania - homepage
 
