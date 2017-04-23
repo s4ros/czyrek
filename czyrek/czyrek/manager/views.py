@@ -82,6 +82,7 @@ def list_users(request):
         'message_list_header': u'Lista użytkowników',
         'add_new_href': 'add_user',
         'add_new_text': u'Dodaj nowego użytkownika',
+        'submit_button_text': 'Dodaj',
         'is_admin': is_admin
     }
     return render(request, "list_users.html", context)
@@ -110,6 +111,7 @@ def add_user(request):
         form = AddUserPostForm()
         context = {'form': form,
                    'message_add_new': u'Dodaj nowego użytkownika',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_user'
                    }
         return render(request, "add.html", context)
@@ -205,11 +207,12 @@ def add_candidate(request):
             new_candidate.save()
             return redirect('list_candidates')
         else:
-            return render(request, "add.html", {'form': form, 'message_add_new': u'Dodja nowego Kandydata', 'form_action_view': 'add_candidate'})
+            return render(request, "add.html", {'form': form, 'message_add_new': u'Dodaj nowego Kandydata', 'form_action_view': 'add_candidate'})
     else:
         form = AddCandidatePostForm()
         context = {'form': form,
                    'message_add_new': u'Dodaj nowego Kandydata',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_candidate'
                    }
         return render(request, "add.html", context)
@@ -266,6 +269,7 @@ def add_school(request):
         form = SchoolsForm()
         context = {'form': form,
                    'message_add_new': u'Dodaj nową Szkołę',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_school'
                    }
         return render(request, "add.html", context)
@@ -333,6 +337,7 @@ def add_language(request):
         form = LanguagesForm()
         context = {'form': form,
                    'message_add_new': u'Dodaj nowy Język',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_language'
                    }
         return render(request, "add.html", context)
@@ -391,6 +396,7 @@ def add_profile(request):
         form = ProfilesForm
         context = {'form': form,
                    'message_add_new': u'Dodaj nowy Profil',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_profile'
                    }
         return render(request, "add.html", context)
@@ -449,6 +455,7 @@ def add_subject(request):
         form = SubjectsForm()
         context = {'form': form,
                    'message_add_new': u'Dodaj nowy Przedimot',
+                   'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_subject'
                    }
         return render(request, "add.html", context)
