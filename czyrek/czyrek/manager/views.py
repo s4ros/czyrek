@@ -76,9 +76,14 @@ def list_users(request):
     users_count = all_users.count()
     # to trzeba bedzie zmienic na permissiony... jak juz beda zaimplementowane
     is_admin = request.user.is_staff
-    context = {'all_users': all_users,
-               'users_count': users_count,
-               'is_admin': is_admin}
+    context = {
+        'all_users': all_users,
+        'users_count': users_count,
+        'message_list_header': u'Lista użytkowników',
+        'add_new_href': 'add_user',
+        'add_new_text': u'Dodaj nowego użytkownika',
+        'is_admin': is_admin
+    }
     return render(request, "list_users.html", context)
 
 ####################
@@ -134,6 +139,9 @@ def list_candidates(request):
     context = {
         'all_candidates': all_candidates,
         'candidates_count': candidates_count,
+        'message_list_header': u'Lista kandydatów',
+        'add_new_href': 'add_candidate',
+        'add_new_text': u'Dodaj nowego kandydata',
         'is_admin': is_admin
     }
     return render(request, "list_candidates.html", context)
@@ -211,6 +219,9 @@ def list_schools(request):
     context = {
         'all_schools': all_schools,
         'schools_count': schools_count,
+        'message_list_header': u'Lista szkół',
+        'add_new_href': 'add_school',
+        'add_new_text': u'Dodaj nową szkołę',
         'is_admin': is_admin
     }
     return render(request, "list_schools.html", context)
@@ -264,6 +275,9 @@ def list_languages(request):
     context = {
         'all_languages': all_languages,
         'is_admin': is_admin,
+        'message_list_header': u'Lista języków obcych',
+        'add_new_href': 'add_language',
+        'add_new_text': u'Dodaj nowy język',
         'languages_count': languages_count
     }
     return render(request, "list_languages.html", context)
@@ -319,6 +333,9 @@ def list_profiles(request):
     context = {
         'all_profiles': all_profiles,
         'is_admin': is_admin,
+        'message_list_header': u'Lista profili kształcenia',
+        'add_new_href': 'add_profile',
+        'add_new_text': u'Dodaj nowy profil',
         'profiles_count': profiles_count
     }
     return render(request, "list_profiles.html", context)
@@ -374,6 +391,9 @@ def list_subjects(request):
     context = {
         'all_subjects': all_subjects,
         'is_admin': is_admin,
+        'message_list_header': u'Lista punktowanych przedmiotów',
+        'add_new_href': 'add_subject',
+        'add_new_text': u'Dodaj nowy przedmiot',
         'subjects_count': subjects_count
     }
     return render(request, "list_subjects.html", context)

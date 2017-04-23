@@ -1,17 +1,8 @@
-{% extends "base.html" %}
+{% extends "list_common.html" %}
 
+{% block list_table %}
 {# ------------------------------------- #}
 
-{# ------------------------------------- #}
-{% block content %}
-<div id="content">
-  <h2>Zarejestrowani kandydaci:</h2>
-<div class="hr_separator">
-  {% if is_admin %}
-  <a href="{% url 'add_candidate' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego kandydata</button></a>
-  {% endif %}
-  <hr />
-</div>
 {% if all_candidates %}
       <div class="table">
         <div class="row header green">
@@ -64,16 +55,6 @@
 {% else %}
     <p><span class="glyphicon glyphicon-minus"></span> Brak kandydatów do wyświetlenia :(</p>
 {% endif %}
-<div class="hr_separator">
-  <hr />
-  {% if is_admin %}
-  <a href="{% url 'add_candidate' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowego kandydata</button></a>
-  {% endif %}
-</div>
-</div>
-{% endblock content %}
-{# ------------------------------------- #}
-{% block scripts %}
 
-{% endblock scripts %}
 {# ------------------------------------- #}
+{% endblock %}

@@ -1,17 +1,12 @@
-{% extends "base.html" %}
+{% extends "list_common.html" %}
 
 {# ------------------------------------- #}
 
+{% block list_table %}
 {# ------------------------------------- #}
-{% block content %}
-<div id="content">
-  <h2>Dostępne profile:</h2>
-<div class="hr_separator">
-  {% if is_admin %}
-  <a href="{% url 'add_profile' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy profil</button></a>
-  {% endif %}
-  <hr />
-</div>
+
+
+
 {% if all_profiles %}
       <div class="table">
         <div class="row header green">
@@ -49,16 +44,6 @@
 {% else %}
     <p><span class="glyphicon glyphicon-minus"></span> Brak profili do wyświetlenia :(</p>
 {% endif %}
-<div class="hr_separator">
-  <hr />
-  {% if is_admin %}
-  <a href="{% url 'add_school' %}"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj nowy profil</button></a>
-  {% endif %}
-</div>
-</div>
-{% endblock content %}
-{# ------------------------------------- #}
-{% block scripts %}
 
-{% endblock scripts %}
 {# ------------------------------------- #}
+{% endblock %}

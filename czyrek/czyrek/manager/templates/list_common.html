@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{# ------------------------------------- #}
+
+{# ------------------------------------- #}
+{% block content %}
+<div id="content">
+  <h2>{{ message_list_header }}:</h2>
+<div class="hr_separator">
+  {% if is_admin %}
+  <a href="../{{ add_new_href }}/"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ add_new_text }}</button></a>
+  {% endif %}
+  <hr />
+</div>
+
+{% block list_table %}
+{% endblock %}
+
+<div class="hr_separator">
+  <hr />
+  {% if is_admin %}
+  <a href="../{{ add_new_href }}/"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> {{ add_new_text }}</button></a>
+  {% endif %}
+</div>
+</div>
+{% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+
+{% endblock scripts %}
+{# ------------------------------------- #}
