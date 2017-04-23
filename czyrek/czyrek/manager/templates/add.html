@@ -9,7 +9,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{{ form_action_view }}" method="post" class="form-group">
+<form action="../{{ form_action_view}}/" method="post" class="form-group">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Dodaj" class="btn btn-success"/>
