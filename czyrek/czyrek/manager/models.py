@@ -55,7 +55,7 @@ class Candidate(models.Model):
     surname = models.CharField(max_length=50)
     city = models.CharField(max_length=100)
     address = models.TextField()
-    postalcode = models.IntegerField()
+    postalcode = models.CharField(max_length=6)
     voivodeship = models.CharField(max_length=50)
     community = models.CharField(max_length=50)
     phone = models.IntegerField()

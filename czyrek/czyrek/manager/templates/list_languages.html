@@ -12,6 +12,7 @@
           <div class="cell">ID</div>
           <div class="cell">Język obcy</div>
           <div class="cell">Szkoła</div>
+          <div class="cell">Aktywny?</div>
           <div class="cell">Akcje</div>
         </div>
     {% for language in all_languages %}
@@ -19,6 +20,13 @@
         <div class="cell">{{ language.id }}</div>
         <div class="cell">{{ language.name }}</div>
         <div class="cell">{{ language.school_id.name }}</div>
+        <div class="cell">
+          {% if language.is_available %}
+            <span class="glyphicon glyphicon-ok-sign green"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-remove-sign red"></span>
+          {% endif %}
+        </div>
         <div class="cell">
           {% if is_admin %}
             <a href="{% url 'edit_language' language_id=language.id %}"><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
@@ -31,6 +39,7 @@
       </div>
     {% endfor %}
       <div class="row header green">
+        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>

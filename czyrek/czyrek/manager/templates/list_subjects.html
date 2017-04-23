@@ -10,12 +10,10 @@
       <div class="table">
         <div class="row header green">
           <div class="cell">ID</div>
-          <div class="cell">Imię</div>
-          <div class="cell">Nazwisko</div>
-          <div class="cell">Miasto</div>
-          <div class="cell">Telefon</div>
-          <div class="cell">PESEL</div>
-          <div class="cell">Data urodzenia</div>
+          <div class="cell">Nazwa przedmiotu</div>
+          <div class="cell">Przelicznik</div>
+          <div class="cell">Szkoła</div>
+          <div class="cell">Aktywny?</div>
           <div class="cell">Akcje</div>
         </div>
     {% for subject in all_subjects %}
@@ -23,7 +21,14 @@
         <div class="cell">{{ subject.id }}</div>
         <div class="cell">{{ subject.name }}</div>
         <div class="cell">{{ subject.wage }}</div>
-        <div class="cell">{{ subject.is_available }}</div>
+        <div class="cell">{{ subject.school.name }}</div>
+        <div class="cell">
+          {% if subject.is_available %}
+            <span class="glyphicon glyphicon-ok-sign green"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-remove-sign red"></span>
+          {% endif %}
+        </div>
         <div class="cell">
           {% if is_admin %}
             <a href="{% url 'edit_subject' subject_id=subject.id %}"><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
@@ -36,8 +41,6 @@
       </div>
     {% endfor %}
       <div class="row header green">
-        <div class="cell"></div>
-        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
