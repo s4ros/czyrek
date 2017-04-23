@@ -21,7 +21,7 @@
         <div class="cell">{{ language.school_id.name }}</div>
         <div class="cell">
           {% if is_admin %}
-            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'edit_language' language_id=language.id %}"><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
             <a href="{% url 'delete_language' language_id=language.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
           {% else %}
             <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>

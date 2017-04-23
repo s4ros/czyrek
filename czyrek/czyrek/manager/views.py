@@ -225,6 +225,25 @@ def delete_candidate(request, candidate_id):
     Candidate.objects.filter(id=candidate_id).delete()
     return redirect('list_candidates')
 
+####################
+# edit candidate
+# @login_required(login_url='/')
+# def edit_user(request, user_id):
+#     user_instance = User.objects.get(pk=user_id)
+#     if request.method == 'POST':
+#         form_data = EditUserForm(request.POST, instance=user_instance)
+#         form_data.save()
+#         return redirect('list_users')
+#     else:
+#         form = EditUserForm(instance=user_instance)
+#         context = {
+#             'form': form,
+#             'message_add_new': u'Edytuj użytkownika {}'.format(user_instance.username),
+#             'submit_button_text': u'Edytuj',
+#             'form_action_view': 'edit_user/{}'.format(user_instance.id),
+#         }
+#         return render(request, "add.html", context)
+
 ##############################################################################
 # SCHOOLS
 ##############################################################################
@@ -283,6 +302,24 @@ def delete_school(request, school_id):
     Schools.objects.filter(id=school_id).delete()
     return redirect('list_schools')
 
+####################
+# edit school
+@login_required(login_url='/')
+def edit_school(request, school_id):
+    object_instance = Schools.objects.get(pk=school_id)
+    if request.method == 'POST':
+        form_data = SchoolsForm(request.POST, instance=object_instance)
+        form_data.save()
+        return redirect('list_schools')
+    else:
+        form = SchoolsForm(instance=object_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj szkołę',
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_school/{}'.format(object_instance.id),
+        }
+        return render(request, "add.html", context)
 
 ##############################################################################
 # LANGUAGES
@@ -341,6 +378,26 @@ def add_language(request):
                    'form_action_view': 'add_language'
                    }
         return render(request, "add.html", context)
+
+####################
+# edit language
+@login_required(login_url='/')
+def edit_language(request, language_id):
+    object_instance = Languages.objects.get(pk=language_id)
+    if request.method == 'POST':
+        form_data = LanguagesForm(request.POST, instance=object_instance)
+        form_data.save()
+        return redirect('list_languages')
+    else:
+        form = LanguagesForm(instance=object_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj język',
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_language/{}'.format(object_instance.id),
+        }
+        return render(request, "add.html", context)
+
 ##############################################################################
 # PROFILES
 ##############################################################################
@@ -400,6 +457,25 @@ def add_profile(request):
                    'form_action_view': 'add_profile'
                    }
         return render(request, "add.html", context)
+
+####################
+# edit profile
+@login_required(login_url='/')
+def edit_profile(request, profile_id):
+    object_instance = Profiles.objects.get(pk=profile_id)
+    if request.method == 'POST':
+        form_data = ProfilesForm(request.POST, instance=object_instance)
+        form_data.save()
+        return redirect('list_profiles')
+    else:
+        form = ProfilesForm(instance=object_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj profil',
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_profile/{}'.format(object_instance.id),
+        }
+        return render(request, "add.html", context)
 ##############################################################################
 # SUBJECTS
 ##############################################################################
@@ -458,4 +534,23 @@ def add_subject(request):
                    'submit_button_text': 'Dodaj',
                    'form_action_view': 'add_subject'
                    }
+        return render(request, "add.html", context)
+
+####################
+# edit subject
+@login_required(login_url='/')
+def edit_subject(request, subject_id):
+    object_instance = Subjects.objects.get(pk=subject_id)
+    if request.method == 'POST':
+        form_data = SubjectsForm(request.POST, instance=object_instance)
+        form_data.save()
+        return redirect('list_subjects')
+    else:
+        form = SubjectsForm(instance=object_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj przedmiot',
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_subject/{}'.format(object_instance.id),
+        }
         return render(request, "add.html", context)

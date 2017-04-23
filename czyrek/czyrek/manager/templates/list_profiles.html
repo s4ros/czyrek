@@ -24,7 +24,7 @@
         <div class="cell">{{ profile.is_available }}</div>
         <div class="cell">
           {% if is_admin %}
-            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'edit_profile' profile_id=profile.id %}"><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
             <a href="{% url 'delete_profile' profile_id=profile.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
           {% else %}
             <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>

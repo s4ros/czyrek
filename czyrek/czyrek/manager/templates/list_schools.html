@@ -29,7 +29,7 @@
         <div class="cell">{{ school.birthdate }}</div>
         <div class="cell">
           {% if is_admin %}
-            <a href=""><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
+            <a href="{% url 'edit_school' school_id=school.id %}"><button type="button" class="btn btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button></a>
             <a href="{% url 'delete_school' school_id=school.id %}" class="btn_usun"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Usuń</button></a>
           {% else %}
             <button type="button" class="btn btn-sm disabled"><span class="glyphicon glyphicon-pencil"></span> Edytuj</button>
