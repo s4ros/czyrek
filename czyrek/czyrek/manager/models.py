@@ -67,7 +67,7 @@ class Candidate(models.Model):
     subject_one = models.ForeignKey(Subjects, related_name="s1")
     subject_two = models.ForeignKey(Subjects, related_name="s2")
     subject_three = models.ForeignKey(Subjects, related_name="s3")
-    photo = models.CharField(max_length=100)
+    photo = models.FileField(upload_to='candidates/')
 
     def __str__(self):
         return self.name + " " + self.surname + " (" + str(self.pesel) + ")"

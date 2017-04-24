@@ -174,7 +174,8 @@ def list_candidates(request):
 @login_required(login_url='/')
 def add_candidate(request):
     if request.method == 'POST':
-        form = AddCandidatePostForm(request.POST)
+        form = AddCandidatePostForm(request.POST, request.FILES)
+        print(request.FILES['photo'])
         if form.is_valid():
             new_candidate = form.save(commit=False)
             new_candidate.name = request.POST['name']
@@ -203,7 +204,7 @@ def add_candidate(request):
             # new_candidate.subject_three = request.POST['subject_three']
             new_candidate.subject_three = Subjects.objects.get(
                 pk=request.POST['subject_three'])
-            new_candidate.photo = request.POST['photo']
+            new_candidate.photo = request.FILES['photo']
             new_candidate.save()
             return redirect('list_candidates')
         else:

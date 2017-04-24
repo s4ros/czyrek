@@ -65,6 +65,7 @@ class AddCandidatePostForm(forms.ModelForm):
     # TODO: Define other fields here
     class Meta:
         model = Candidate
+        photo = forms.FileField(label='Wybierz plik', help_text="Tekst wspomagajacy")
         fields = ('name', 'surname', 'city', 'address', 'postalcode',
                   'voivodeship', 'community', 'phone', 'pesel',
                   'birthdate', 'last_school', 'primary_language',
