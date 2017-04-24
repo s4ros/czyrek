@@ -55,4 +55,6 @@ p = Profiles(name='Ekonomiczny', school_id=Schools.objects.get(pk=2), is_availab
 
 _EOF
 
-python manage.py runserver 0.0.0.0:8000
+if [[ "$1" == "run" ]]; then
+  python manage.py runserver 0.0.0.0:8000
+fi
