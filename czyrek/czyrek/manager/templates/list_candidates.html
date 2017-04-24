@@ -13,6 +13,7 @@
           <div class="cell">Telefon</div>
           <div class="cell">PESEL</div>
           <div class="cell">Data urodzenia</div>
+          <div class="cell">Zdjęcie</div>
           <div class="cell">Akcje</div>
         </div>
     {% for candidate in all_candidates %}
@@ -24,6 +25,7 @@
         <div class="cell">{{ candidate.phone }}</div>
         <div class="cell">{{ candidate.pesel }}</div>
         <div class="cell">{{ candidate.birthdate }}</div>
+        <div class="cell">{{ candidate.photo }}</div>
         <div class="cell">
             {# edit button #}
             <a href="">
@@ -42,6 +44,7 @@
       </div>
     {% endfor %}
       <div class="row header green">
+        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>

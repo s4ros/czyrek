@@ -147,11 +147,8 @@ def edit_user(request, user_id):
 ##############################################################################
 # CANDIDATES
 ##############################################################################
-
 ####################
 # list_candidates
-
-
 @login_required(login_url='/')
 def list_candidates(request):
     all_candidates = Candidate.objects.order_by('id')
@@ -169,8 +166,6 @@ def list_candidates(request):
 
 ####################
 # add_candidate
-
-
 @login_required(login_url='/')
 def add_candidate(request):
     if request.method == 'POST':
@@ -189,6 +184,15 @@ def add_candidate(request):
             new_candidate.pesel = request.POST['pesel']
             new_candidate.birthdate = request.POST['birthdate']
             new_candidate.last_school = request.POST['last_school']
+            new_candidate.primary_school = Profiles.objects.get(
+                pk=request.POST['primary_school']
+            )
+            new_candidate.secondary_school = Profiles.objects.get(
+                pk=request.POST['secondary_school']
+            )
+            new_candidate.third_school = Profiles.objects.get(
+                pk=request.POST['third_school']
+            )
             # new_candidate.primary_language = request.POST['primary_language']
             new_candidate.primary_language = Languages.objects.get(
                 pk=request.POST['primary_language'])
@@ -205,6 +209,8 @@ def add_candidate(request):
             new_candidate.subject_three = Subjects.objects.get(
                 pk=request.POST['subject_three'])
             new_candidate.photo = request.FILES['photo']
+
+            new_candidate.active_school = new_candidate.primary_school
             new_candidate.save()
             return redirect('list_candidates')
         else:
@@ -220,8 +226,6 @@ def add_candidate(request):
 
 ####################
 # delete_candidate
-
-
 def delete_candidate(request, candidate_id):
     Candidate.objects.filter(id=candidate_id).delete()
     return redirect('list_candidates')
@@ -248,11 +252,8 @@ def delete_candidate(request, candidate_id):
 ##############################################################################
 # SCHOOLS
 ##############################################################################
-
 ####################
 # list_schools
-
-
 @login_required(login_url='/')
 def list_schools(request):
     all_schools = Schools.objects.order_by('id')
@@ -270,8 +271,6 @@ def list_schools(request):
 
 ####################
 # add_school
-
-
 @login_required(login_url='/')
 def add_school(request):
     if request.method == 'POST':
@@ -296,8 +295,6 @@ def add_school(request):
 
 ####################
 # delete_school
-
-
 @login_required(login_url='/')
 def delete_school(request, school_id):
     Schools.objects.filter(id=school_id).delete()
@@ -325,7 +322,6 @@ def edit_school(request, school_id):
 ##############################################################################
 # LANGUAGES
 ##############################################################################
-
 ####################
 # list_languages
 @login_required(login_url='/')
@@ -345,8 +341,6 @@ def list_languages(request):
 
 ####################
 # delete_language
-
-
 @login_required(login_url='/')
 def delete_language(request, language_id):
     Languages.objects.filter(id=language_id).delete()
@@ -354,8 +348,6 @@ def delete_language(request, language_id):
 
 ####################
 # add_language
-
-
 @login_required(login_url='/')
 def add_language(request):
     if request.method == 'POST':
@@ -363,8 +355,8 @@ def add_language(request):
         if form.is_valid():
             new_lang = form.save(commit=False)
             new_lang.name = request.POST['name']
-            new_lang.school_id = Schools.objects.get(
-                pk=request.POST['school_id'])
+            # new_lang.school_id = Schools.objects.get(
+                # pk=request.POST['school_id'])
             if request.POST['is_available'] == "on":
                 new_lang.is_available = True
             else:
@@ -399,14 +391,12 @@ def edit_language(request, language_id):
         }
         return render(request, "add.html", context)
 
+
 ##############################################################################
 # PROFILES
 ##############################################################################
-
 ####################
 # list_profiles
-
-
 @login_required(login_url='/')
 def list_profiles(request):
     all_profiles = Profiles.objects.order_by('id')
@@ -424,8 +414,6 @@ def list_profiles(request):
 
 ####################
 # delete_profile
-
-
 @login_required(login_url='/')
 def delete_profile(request, profile_id):
     Profiles.objects.filter(id=profile_id).delete()
@@ -433,8 +421,6 @@ def delete_profile(request, profile_id):
 
 ####################
 # add_profile
-
-
 @login_required(login_url='/')
 def add_profile(request):
     if request.method == 'POST':
@@ -477,14 +463,13 @@ def edit_profile(request, profile_id):
             'form_action_view': 'edit_profile/{}'.format(object_instance.id),
         }
         return render(request, "add.html", context)
+
+
 ##############################################################################
 # SUBJECTS
 ##############################################################################
-
 ####################
 # list_subjects
-
-
 @login_required(login_url='/')
 def list_subjects(request):
     all_subjects = Subjects.objects.order_by('id')
@@ -502,8 +487,6 @@ def list_subjects(request):
 
 ####################
 # delete_subject
-
-
 @login_required(login_url='/')
 def delete_subject(request, subject_id):
     Subjects.objects.filter(id=subject_id).delete()
@@ -511,8 +494,6 @@ def delete_subject(request, subject_id):
 
 ####################
 # add_subject
-
-
 @login_required(login_url='/')
 def add_subject(request):
     if request.method == 'POST':
@@ -520,7 +501,7 @@ def add_subject(request):
         if form.is_valid():
             new_object = form.save(commit=False)
             new_object.name = request.POST['name']
-            new_object.school = Schools.objects.get(pk=request.POST['school'])
+            # new_object.school = Schools.objects.get(pk=request.POST['school'])
             new_object.wage = request.POST['wage']
             if request.POST['is_available'] == "on":
                 new_object.is_available = True

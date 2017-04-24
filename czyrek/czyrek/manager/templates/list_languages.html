@@ -11,7 +11,7 @@
         <div class="row header green">
           <div class="cell">ID</div>
           <div class="cell">Język obcy</div>
-          <div class="cell">Szkoła</div>
+          {# <div class="cell">Szkoła</div>#}
           <div class="cell">Aktywny?</div>
           <div class="cell">Akcje</div>
         </div>
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="cell">{{ language.id }}</div>
         <div class="cell">{{ language.name }}</div>
-        <div class="cell">{{ language.school_id.name }}</div>
+        {# <div class="cell">{{ language.school_id.name }}</div>#}
         <div class="cell">
           {% if language.is_available %}
             <span class="glyphicon glyphicon-ok-sign green"></span>
@@ -41,7 +41,7 @@
       <div class="row header green">
         <div class="cell"></div>
         <div class="cell"></div>
-        <div class="cell"></div>
+        {# <div class="cell"></div>#}
         <div class="cell"></div>
         <div class="cell">Wszystkich: {{ languages_count }}</div>
       </div>

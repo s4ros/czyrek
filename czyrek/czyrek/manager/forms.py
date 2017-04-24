@@ -4,13 +4,11 @@ from django import forms
 from .models import Candidate, Schools, Languages, Subjects, Profiles
 from django.contrib.auth.models import User
 
-# 3
+
+################################################
 # Formularz dodawania uzytkownikow
-
-
 class AddUserPostForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
-
     class Meta:
         model = User
         fields = ('username', 'password', 'email', 'first_name',
@@ -25,9 +23,10 @@ class AddUserPostForm(forms.ModelForm):
             'is_active': 'Aktywny?',
         }
 
+################################################
+# Formualrz edycji uzytkownika
 class EditUserForm(forms.ModelForm):
     # password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
-
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name',
@@ -43,10 +42,8 @@ class EditUserForm(forms.ModelForm):
         }
 
 
-# 3
+################################################
 # Formularz logowania - homepage
-
-
 class LoginForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
 
@@ -57,10 +54,8 @@ class LoginForm(forms.ModelForm):
             'username': 'Nazwa użytkownika',
         }
 
-# 3
+################################################
 # Forularz dodawania Kandydata
-
-
 class AddCandidatePostForm(forms.ModelForm):
     # TODO: Define other fields here
     class Meta:
@@ -68,9 +63,12 @@ class AddCandidatePostForm(forms.ModelForm):
         photo = forms.FileField(label='Wybierz plik', help_text="Tekst wspomagajacy")
         fields = ('name', 'surname', 'city', 'address', 'postalcode',
                   'voivodeship', 'community', 'phone', 'pesel',
-                  'birthdate', 'last_school', 'primary_language',
-                  'secondary_language', 'subject_one', 'subject_two',
-                  'subject_three', 'photo')
+                  'birthdate', 'last_school',
+                  'primary_school', 'secondary_school', 'third_school',
+                  'subject_one', 'subject_two', 'subject_three',
+                  'primary_language', 'secondary_language',
+                  'photo',
+                  )
         labels = {
             'name': 'Imię',
             'surname': 'Nazwisko',
@@ -83,7 +81,10 @@ class AddCandidatePostForm(forms.ModelForm):
             'pesel': 'Numer PESEL',
             'birthdate': 'Data urodzenia',
             'last_school': 'Poprzednia szkoła',
-            'primary_language': 'Preferencyjny język obcy',
+            'primary_school': 'Preferowany profil/szkoła #1',
+            'secondary_school': 'Preferowany profil/szkoła #2',
+            'third_school': 'Preferowany profil/szkoła #3',
+            'primary_language': 'Preferowany język obcy',
             'secondary_language': 'Alternatywny język obcy',
             'subject_one': 'Przedmiot do punktacji #1',
             'subject_two': 'Przedmiot do punktacji #2',
@@ -91,9 +92,8 @@ class AddCandidatePostForm(forms.ModelForm):
             'photo': 'Zdjęcie',
         }
 
+################################################
 # Formularz Szkol
-
-
 class SchoolsForm(forms.ModelForm):
     class Meta:
         model = Schools
@@ -103,36 +103,35 @@ class SchoolsForm(forms.ModelForm):
             'is_available': 'Dostępna?'
         }
 
+################################################
 # Formularz Jezykow
-
-
 class LanguagesForm(forms.ModelForm):
     class Meta:
         model = Languages
-        fields = ('name', 'school_id', 'is_available')
+        # fields = ('name', 'school_id', 'is_available')
+        fields = ('name', 'is_available')
         labels = {
             'name': 'Język',
-            'school_id': 'Szkoła',
+            # 'school_id': 'Szkoła',
             'is_available': 'Dostępny?'
         }
 
+################################################
 # Formularz Przedmiotow
-
-
 class SubjectsForm(forms.ModelForm):
     class Meta:
         model = Subjects
-        fields = ('name', 'wage', 'school', 'is_available')
+        # fields = ('name', 'wage', 'school', 'is_available')
+        fields = ('name', 'wage', 'is_available')
         labels = {
             'name': 'Nazwa Przedmiotu',
             'wage': 'Liczba punktów za przedmiot',
-            'school': 'Szkoła',
+            # 'school': 'Szkoła',
             'is_available': 'Dostępny?'
         }
 
+################################################
 # Formularz profili
-
-
 class ProfilesForm(forms.ModelForm):
     class Meta:
         model = Profiles
