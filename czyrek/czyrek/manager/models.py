@@ -10,10 +10,11 @@ from django.db import models
 @python_2_unicode_compatible
 class Schools(models.Model):
     name = models.CharField(max_length=100)
+    shortcut = models.CharField(max_length=5)
     is_available = models.BooleanField()
 
     def __str__(self):
-        return self.name
+        return "{} ({})".format(self.name, self.shortcut)
 
 ####################
 # Languages Model
@@ -32,26 +33,27 @@ class Languages(models.Model):
 
     def __str__(self):
         # return "{} - {}".format(self.name, self.school_id.name)
-        return "{}".format(self.name)
+        return "{} ({})".format(self.name, self.shortcut)
 
 ####################
 # Subjects Model
 @python_2_unicode_compatible
 class Subjects(models.Model):
     name = models.CharField(max_length=30)
+    shortcut = models.CharField(max_length=5)
     wage = models.IntegerField()
-    # school = models.ForeignKey(Schools)
     is_available = models.BooleanField()
 
     def __str__(self):
         # return "{} - {}".format(self.name, self.school.name)
-        return "{}".format(self.name)
+        return "{} ({})".format(self.name, self.shortcut)
 
 ####################
 # Profiles Model
 @python_2_unicode_compatible
 class Profiles(models.Model):
     name = models.CharField(max_length=30)
+    shortcut = models.CharField(max_length=10)
     school_id = models.ForeignKey(Schools)
     is_available = models.BooleanField()
 

@@ -91,9 +91,10 @@ class AddCandidatePostForm(forms.ModelForm):
 class SchoolsForm(forms.ModelForm):
     class Meta:
         model = Schools
-        fields = ('name', 'is_available')
+        fields = ('name', 'shortcut', 'is_available')
         labels = {
             'name': 'Nazwa Szkoły',
+            'shortcut': 'Skrócona nazwa',
             'is_available': 'Dostępna?'
         }
 
@@ -106,7 +107,7 @@ class LanguagesForm(forms.ModelForm):
         fields = ('name', 'shortcut', 'level', 'is_available')
         labels = {
             'name': 'Język',
-            'shortcut': 'Skrót',
+            'shortcut': 'Skrócona nazwa',
             'level': 'Poziom zaawansowania',
             'is_available': 'Dostępny?'
         }
@@ -117,9 +118,10 @@ class SubjectsForm(forms.ModelForm):
     class Meta:
         model = Subjects
         # fields = ('name', 'wage', 'school', 'is_available')
-        fields = ('name', 'wage', 'is_available')
+        fields = ('name', 'shortcut', 'wage', 'is_available')
         labels = {
             'name': 'Nazwa Przedmiotu',
+            'shortcut': 'Skrócona nazwa',
             'wage': 'Liczba punktów za przedmiot',
             # 'school': 'Szkoła',
             'is_available': 'Dostępny?'
@@ -130,9 +132,10 @@ class SubjectsForm(forms.ModelForm):
 class ProfilesForm(forms.ModelForm):
     class Meta:
         model = Profiles
-        fields = ('name', 'school_id', 'is_available')
+        fields = ('name', 'shortcut', 'school_id', 'is_available')
         labels = {
             'name': 'Nazwa Profilu',
+            'shortcut': 'Skrócona nazwa',
             'school_id': 'Szkoła',
             'is_available': 'Dostępny?'
         }
