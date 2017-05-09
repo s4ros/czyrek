@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -16,7 +18,7 @@ urlpatterns = [
     url(r'^list_candidates$', views.list_candidates, name='list_candidates'),
     url(r'^add_candidate$', views.add_candidate, name='add_candidate'),
     url(r'^delete_candidate/(?P<candidate_id>[0-9]+)$', views.delete_candidate, name='delete_candidate'),
-    # url(r'^edit_candidate/(?P<candidate_id>[0-9]+)$', views.edit_candidate, name='edit_candidate'),
+    url(r'^edit_candidate/(?P<candidate_id>[0-9]+)$', views.edit_candidate, name='edit_candidate'),
     # schools
     url(r'^list_schools$', views.list_schools, name='list_schools'),
     url(r'^add_school$', views.add_school, name='add_school'),
@@ -37,4 +39,4 @@ urlpatterns = [
     url(r'^add_subject$', views.add_subject, name='add_subject'),
     url(r'^delete_subject/(?P<subject_id>[0-9]+)$', views.delete_subject, name='delete_subject'),
     url(r'^edit_subject/(?P<subject_id>[0-9]+)$', views.edit_subject, name='edit_subject'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

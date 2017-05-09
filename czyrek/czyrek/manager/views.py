@@ -193,19 +193,14 @@ def add_candidate(request):
             new_candidate.third_school = Profiles.objects.get(
                 pk=request.POST['third_school']
             )
-            # new_candidate.primary_language = request.POST['primary_language']
             new_candidate.primary_language = Languages.objects.get(
                 pk=request.POST['primary_language'])
-            # new_candidate.secondary_language = request.POST['secondary_language']
             new_candidate.secondary_language = Languages.objects.get(
                 pk=request.POST['secondary_language'])
-            # new_candidate.subject_one = request.POST['subject_one']
             new_candidate.subject_one = Subjects.objects.get(
                 pk=request.POST['subject_one'])
-            # new_candidate.subject_two = request.POST['subject_two']
             new_candidate.subject_two = Subjects.objects.get(
                 pk=request.POST['subject_two'])
-            # new_candidate.subject_three = request.POST['subject_three']
             new_candidate.subject_three = Subjects.objects.get(
                 pk=request.POST['subject_three'])
             new_candidate.photo = request.FILES['photo']
@@ -232,22 +227,22 @@ def delete_candidate(request, candidate_id):
 
 ####################
 # edit candidate
-# @login_required(login_url='/')
-# def edit_user(request, user_id):
-#     user_instance = User.objects.get(pk=user_id)
-#     if request.method == 'POST':
-#         form_data = EditUserForm(request.POST, instance=user_instance)
-#         form_data.save()
-#         return redirect('list_users')
-#     else:
-#         form = EditUserForm(instance=user_instance)
-#         context = {
-#             'form': form,
-#             'message_add_new': u'Edytuj użytkownika {}'.format(user_instance.username),
-#             'submit_button_text': u'Edytuj',
-#             'form_action_view': 'edit_user/{}'.format(user_instance.id),
-#         }
-#         return render(request, "add.html", context)
+@login_required(login_url='/')
+def edit_candidate(request, candidate_id):
+    object_instance = Candidate.objects.get(pk=candidate_id)
+    if request.method == 'POST':
+        form_data = AddCandidatePostForm(request.POST, request.FILES, instance=object_instance)
+        form_data.save()
+        return redirect('list_candidates')
+    else:
+        form = AddCandidatePostForm(instance=object_instance)
+        context = {
+            'form': form,
+            'message_add_new': u'Edytuj kandydata {}'.format(object_instance.name),
+            'submit_button_text': u'Edytuj',
+            'form_action_view': 'edit_candidate/{}'.format(object_instance.id),
+        }
+        return render(request, "add.html", context)
 
 ##############################################################################
 # SCHOOLS

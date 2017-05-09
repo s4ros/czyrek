@@ -24,11 +24,11 @@
         <div class="cell">{{ candidate.city }}</div>
         <div class="cell">{{ candidate.phone }}</div>
         <div class="cell">{{ candidate.pesel }}</div>
-        <div class="cell">{{ candidate.birthdate }}</div>
-        <div class="cell">{{ candidate.photo }}</div>
+        <div class="cell">{{ candidate.birthdate|date:"Y-m-d" }}</div>
+        <div class="cell"><img src="{{ candidate.photo.url }}" class="kandydat-mini"/></div>
         <div class="cell">
             {# edit button #}
-            <a href="">
+            <a href="{% url 'edit_candidate' candidate_id=candidate.id %}">
               <button type="button" class="btn btn-sm">
                 <span class="glyphicon glyphicon-pencil"></span> Edytuj
               </button>
