@@ -201,8 +201,8 @@ html, body {
 
     /* customizable */
     background: #086219;
-    margin-top: -50px;
-    margin-left: 10px;
+    margin-top: -15px;
+    margin-left: -35px;
 }
 
 [tooltip]:not([tooltip-persistent]):before {

@@ -14,7 +14,7 @@ class Schools(models.Model):
     is_available = models.BooleanField()
 
     def __str__(self):
-        return "{} ({})".format(self.name, self.shortcut)
+        return "{}".format(self.name, self.shortcut)
 
 ####################
 # Languages Model

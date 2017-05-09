@@ -12,14 +12,15 @@
           <div class="cell">Telefon</div>
           <div class="cell">Data urodzenia</div>
           <div class="cell" tooltip="Preferowana Szkoła #1" tooltip-persistent>PS#1</div>
-          <div class="cell" tooltip="Preferowana Szkoła #2">PS#2</div>
-          <div class="cell" tooltip="Preferowana Szkoła #3">PS#3</div>
-          <div class="cell" tooltip="Przedimot do punktacji #1">PDP#1</div>
-          <div class="cell" tooltip="Przedimot do punktacji #2">PDP#2</div>
-          <div class="cell" tooltip="Przedimot do punktacji #3">PDP#3</div>
-          <div class="cell" tooltip="Preferowany język obcy #1">PJO#1</div>
-          <div class="cell" tooltip="Alternatywny język obcy #2">PJO#2</div>
+          <div class="cell" tooltip="Preferowana Szkoła #2" tooltip-persistent>PS#2</div>
+          <div class="cell" tooltip="Preferowana Szkoła #3" tooltip-persistent>PS#3</div>
+          <div class="cell" tooltip="Przedmiot do punktacji #1" tooltip-persistent>PDP#1</div>
+          <div class="cell" tooltip="Przedmiot do punktacji #2" tooltip-persistent>PDP#2</div>
+          <div class="cell" tooltip="Przedmiot do punktacji #3" tooltip-persistent>PDP#3</div>
+          <div class="cell" tooltip="Preferowany język obcy #1" tooltip-persistent>PJO#1</div>
+          <div class="cell" tooltip="Preferowany język obcy #2" tooltip-persistent>PJO#2</div>
           <div class="cell">Zdjęcie</div>
+          <div class="cell"tooltip="Aktywna preferencja szkoły" tooltip-persistent><B>AKT</B></div>
           <div class="cell">Akcje</div>
         </div>
     {% for candidate in all_candidates %}
@@ -27,11 +28,18 @@
         <div class="cell">{{ candidate.id }}</div>
         <div class="cell">{{ candidate.name }}</div>
         <div class="cell">{{ candidate.surname }}</div>
-        <div class="cell">{{ candidate.city }}</div>
         <div class="cell">{{ candidate.phone }}</div>
-        <div class="cell">{{ candidate.pesel }}</div>
         <div class="cell">{{ candidate.birthdate|date:"Y-m-d" }}</div>
+        <div class="cell"><a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.primary_school.id }}">{{ candidate.primary_school.shortcut }}</a></div>
+        <div class="cell"><a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.secondary_school.id }}">{{ candidate.secondary_school.shortcut }}</a></div>
+        <div class="cell"><a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.third_school.id }}">{{ candidate.third_school.shortcut }}</a></div>
+        <div class="cell">{{ candidate.subject_one.shortcut }}</div>
+        <div class="cell">{{ candidate.subject_two.shortcut }}</div>
+        <div class="cell">{{ candidate.subject_three.shortcut }}</div>
+        <div class="cell">{{ candidate.primary_language.shortcut }}</div>
+        <div class="cell">{{ candidate.secondary_language.shortcut }}</div>
         <div class="cell"><img src="{{ candidate.photo.url }}" class="kandydat-mini"/></div>
+        <div class="cell"><B>{{ candidate.active_school.shortcut}}</B></div>
         <div class="cell">
             {# edit button #}
             <a href="{% url 'edit_candidate' candidate_id=candidate.id %}">
@@ -50,6 +58,13 @@
       </div>
     {% endfor %}
       <div class="row header green">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>

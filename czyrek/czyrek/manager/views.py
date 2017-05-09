@@ -239,6 +239,16 @@ def edit_candidate(request, candidate_id):
         }
         return render(request, "add.html", context)
 
+####################
+# edit candidate's active school
+@login_required(login_url='/')
+def edit_active_school(request, candidate_id, active_school):
+    object_instance = Candidate.objects.get(pk=candidate_id)
+    object_instance.active_school = Profiles.objects.get(pk=active_school)
+    object_instance.save()
+    return redirect('list_candidates')
+
+
 ##############################################################################
 # SCHOOLS
 ##############################################################################
@@ -420,6 +430,7 @@ def add_profile(request):
             new_object.name = request.POST['name']
             new_object.school_id = Schools.objects.get(
                 pk=request.POST['school_id'])
+            new_object.shortcut = "{}-{}".format(request.POST['shortcut'], new_object.school_id.shortcut)
             if request.POST['is_available'] == "on":
                 new_object.is_available = True
             else:

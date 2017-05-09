@@ -12,6 +12,7 @@
         <div class="row header green">
           <div class="cell">ID</div>
           <div class="cell">Nazwa profilu</div>
+          <div class="cell">Skrót</div>
           <div class="cell">Szkoła</div>
           <div class="cell">Aktywny?</div>
           <div class="cell">Akcje</div>
@@ -20,6 +21,7 @@
       <div class="row">
         <div class="cell">{{ profile.id }}</div>
         <div class="cell">{{ profile.name }}</div>
+        <div class="cell">{{ profile.shortcut }}</div>
         <div class="cell">{{ profile.school_id.name }}</div>
         <div class="cell">
           {% if profile.is_available %}
@@ -40,6 +42,7 @@
       </div>
     {% endfor %}
       <div class="row header green">
+        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>

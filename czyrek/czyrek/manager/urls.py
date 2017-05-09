@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^add_candidate$', views.add_candidate, name='add_candidate'),
     url(r'^delete_candidate/(?P<candidate_id>[0-9]+)$', views.delete_candidate, name='delete_candidate'),
     url(r'^edit_candidate/(?P<candidate_id>[0-9]+)$', views.edit_candidate, name='edit_candidate'),
+    # edit active_school
+    url(r'^edit_active_school/(?P<candidate_id>[0-9]+)/(?P<active_school>[0-9]+)$', views.edit_active_school, name='edit_active_school'),
+    url(r'^edit_active_school$', views.edit_active_school, name='edit_active_school'),
     # schools
     url(r'^list_schools$', views.list_schools, name='list_schools'),
     url(r'^add_school$', views.add_school, name='add_school'),
