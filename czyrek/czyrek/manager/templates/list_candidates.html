@@ -7,12 +7,18 @@
       <div class="table">
         <div class="row header green">
           <div class="cell">ID</div>
-          <div class="cell">Imię</div>
+          <div class="cell">Imiona</div>
           <div class="cell">Nazwisko</div>
-          <div class="cell">Miasto</div>
           <div class="cell">Telefon</div>
-          <div class="cell">PESEL</div>
           <div class="cell">Data urodzenia</div>
+          <div class="cell" tooltip="Preferowana Szkoła #1" tooltip-persistent>PS#1</div>
+          <div class="cell" tooltip="Preferowana Szkoła #2">PS#2</div>
+          <div class="cell" tooltip="Preferowana Szkoła #3">PS#3</div>
+          <div class="cell" tooltip="Przedimot do punktacji #1">PDP#1</div>
+          <div class="cell" tooltip="Przedimot do punktacji #2">PDP#2</div>
+          <div class="cell" tooltip="Przedimot do punktacji #3">PDP#3</div>
+          <div class="cell" tooltip="Preferowany język obcy #1">PJO#1</div>
+          <div class="cell" tooltip="Alternatywny język obcy #2">PJO#2</div>
           <div class="cell">Zdjęcie</div>
           <div class="cell">Akcje</div>
         </div>
@@ -60,4 +66,12 @@
 {% endif %}
 
 {# ------------------------------------- #}
+{% endblock %}
+
+{% block scripts %}
+  <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 {% endblock %}

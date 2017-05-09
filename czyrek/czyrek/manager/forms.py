@@ -61,8 +61,7 @@ class AddCandidatePostForm(forms.ModelForm):
     class Meta:
         model = Candidate
         photo = forms.FileField(label='Wybierz plik', help_text="Tekst wspomagajacy")
-        fields = ('name', 'surname', 'city', 'address', 'postalcode',
-                  'voivodeship', 'community', 'phone', 'pesel',
+        fields = ('name', 'surname', 'phone', 'pesel',
                   'birthdate', 'last_school',
                   'primary_school', 'secondary_school', 'third_school',
                   'subject_one', 'subject_two', 'subject_three',
@@ -70,13 +69,8 @@ class AddCandidatePostForm(forms.ModelForm):
                   'photo',
                   )
         labels = {
-            'name': 'Imię',
+            'name': 'Imiona',
             'surname': 'Nazwisko',
-            'city': 'Miasto',
-            'address': 'Adres zamieszkania',
-            'postalcode': 'Kod pocztowy',
-            'voivodeship': 'Województwo',
-            'community': 'Gmina',
             'phone': 'Telefon kontaktowy',
             'pesel': 'Numer PESEL',
             'birthdate': 'Data urodzenia',
@@ -109,10 +103,11 @@ class LanguagesForm(forms.ModelForm):
     class Meta:
         model = Languages
         # fields = ('name', 'school_id', 'is_available')
-        fields = ('name', 'is_available')
+        fields = ('name', 'shortcut', 'level', 'is_available')
         labels = {
             'name': 'Język',
-            # 'school_id': 'Szkoła',
+            'shortcut': 'Skrót',
+            'level': 'Poziom zaawansowania',
             'is_available': 'Dostępny?'
         }
 

@@ -19,9 +19,15 @@ class Schools(models.Model):
 # Languages Model
 @python_2_unicode_compatible
 class Languages(models.Model):
-    # nie wiem czy po tym bedzie schools?
+    BEGINNER = u"P"
+    ADVANCED = u"Z"
+    LANG_LEVELS = (
+        (BEGINNER, u"początkujący"),
+        (ADVANCED, u"zaawansowany"),
+    )
     name = models.CharField(max_length=30)
-    # school_id = models.ForeignKey(Schools)
+    shortcut = models.CharField(max_length=5)
+    level = models.CharField(max_length=20, choices=LANG_LEVELS, default=BEGINNER)
     is_available = models.BooleanField()
 
     def __str__(self):
@@ -59,11 +65,6 @@ class Profiles(models.Model):
 class Candidate(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
-    city = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    postalcode = models.CharField(max_length=6)
-    voivodeship = models.CharField(max_length=50)
-    community = models.CharField(max_length=50)
     phone = models.IntegerField()
     pesel = models.IntegerField()
     birthdate = models.DateField()

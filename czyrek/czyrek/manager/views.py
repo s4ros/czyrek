@@ -175,11 +175,6 @@ def add_candidate(request):
             new_candidate = form.save(commit=False)
             new_candidate.name = request.POST['name']
             new_candidate.surname = request.POST['surname']
-            new_candidate.city = request.POST['city']
-            new_candidate.address = request.POST['address']
-            new_candidate.postalcode = request.POST['postalcode']
-            new_candidate.voivodeship = request.POST['voivodeship']
-            new_candidate.community = request.POST['community']
             new_candidate.phone = request.POST['phone']
             new_candidate.pesel = request.POST['pesel']
             new_candidate.birthdate = request.POST['birthdate']
@@ -350,8 +345,8 @@ def add_language(request):
         if form.is_valid():
             new_lang = form.save(commit=False)
             new_lang.name = request.POST['name']
-            # new_lang.school_id = Schools.objects.get(
-                # pk=request.POST['school_id'])
+            new_lang.shortcut = request.POST['shortcut']
+            new_lang.level = request.POST['level']
             if request.POST['is_available'] == "on":
                 new_lang.is_available = True
             else:
