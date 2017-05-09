@@ -11,6 +11,7 @@
         <div class="row header green">
           <div class="cell">ID</div>
           <div class="cell">Nazwa szkoły</div>
+          <div class="cell">Skrót</div>
           <div class="cell">Aktywna? </div>
           <div class="cell">Akcje</div>
         </div>
@@ -18,6 +19,7 @@
       <div class="row">
         <div class="cell">{{ school.id }}</div>
         <div class="cell">{{ school.name }}</div>
+        <div class="cell">{{ school.shortcut }}</div>
         <div class="cell">
           {% if school.is_available %}
             <span class="glyphicon glyphicon-ok-sign green"></span>
@@ -37,6 +39,7 @@
       </div>
     {% endfor %}
       <div class="row header green">
+        <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
