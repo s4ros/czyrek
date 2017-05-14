@@ -62,7 +62,7 @@ class AddCandidatePostForm(forms.ModelForm):
         model = Candidate
         photo = forms.FileField(label='Wybierz plik', help_text="Tekst wspomagajacy")
         fields = ('name', 'surname', 'phone', 'pesel',
-                  'birthdate', 'last_school',
+                  'birthdate', 'last_school', 'gim_language1', 'gim_language2',
                   'primary_school', 'secondary_school', 'third_school',
                   'subject_one', 'subject_two', 'subject_three',
                   'primary_language', 'secondary_language',
@@ -75,6 +75,8 @@ class AddCandidatePostForm(forms.ModelForm):
             'pesel': 'Numer PESEL',
             'birthdate': 'Data urodzenia',
             'last_school': 'Poprzednia szkoła',
+            'gim_language1': 'Język nauczany w Gimnazjum #1',
+            'gim_language2': 'Język nauczany w Gimnazjum #2',
             'primary_school': 'Preferowany profil/szkoła #1',
             'secondary_school': 'Preferowany profil/szkoła #2',
             'third_school': 'Preferowany profil/szkoła #3',

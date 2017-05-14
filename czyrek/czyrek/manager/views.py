@@ -97,14 +97,9 @@ def add_user(request):
         form = AddUserPostForm(request.POST)
         if form.is_valid():
             new_user = form.save(commit=False)
-            new_user.username = request.POST['username']
-            new_user.email = request.POST['email']
             new_user.set_password(request.POST['password'])
-            new_user.first_name = request.POST['first_name']
-            new_user.last_name = request.POST['last_name']
             if 'is_staff' in request.POST:
                 new_user.is_staff = True
-            # new_user.permissions = request.POST['permissions']
             new_user.save()
             return redirect('list_users')
     else:
@@ -173,34 +168,46 @@ def add_candidate(request):
         print(request.FILES['photo'])
         if form.is_valid():
             new_candidate = form.save(commit=False)
-            new_candidate.name = request.POST['name']
-            new_candidate.surname = request.POST['surname']
-            new_candidate.phone = request.POST['phone']
-            new_candidate.pesel = request.POST['pesel']
-            new_candidate.birthdate = request.POST['birthdate']
-            new_candidate.last_school = request.POST['last_school']
+            # primary_school
             new_candidate.primary_school = Profiles.objects.get(
                 pk=request.POST['primary_school']
             )
+            # secondary_school
             new_candidate.secondary_school = Profiles.objects.get(
                 pk=request.POST['secondary_school']
             )
+            # third_school
             new_candidate.third_school = Profiles.objects.get(
                 pk=request.POST['third_school']
             )
+            #gim_language1
+            new_candidate.gim_language1 = Languages.objects.get(
+                pk=request.POST['gim_language1']
+            )
+            # gim_language2
+            new_candidate.gim_language2 = Languages.objects.get(
+                pk=request.POST['gim_language2']
+            )
+            # primary_language
             new_candidate.primary_language = Languages.objects.get(
                 pk=request.POST['primary_language'])
+            # secondary_language
             new_candidate.secondary_language = Languages.objects.get(
                 pk=request.POST['secondary_language'])
+            # subject_one
             new_candidate.subject_one = Subjects.objects.get(
                 pk=request.POST['subject_one'])
+            # subject_two
             new_candidate.subject_two = Subjects.objects.get(
                 pk=request.POST['subject_two'])
+            # subject_three
             new_candidate.subject_three = Subjects.objects.get(
                 pk=request.POST['subject_three'])
+            # photo
             new_candidate.photo = request.FILES['photo']
-
+            # active_school
             new_candidate.active_school = new_candidate.primary_school
+
             new_candidate.save()
             return redirect('list_candidates')
         else:
@@ -354,9 +361,6 @@ def add_language(request):
         form = LanguagesForm(request.POST)
         if form.is_valid():
             new_lang = form.save(commit=False)
-            new_lang.name = request.POST['name']
-            new_lang.shortcut = request.POST['shortcut']
-            new_lang.level = request.POST['level']
             if request.POST['is_available'] == "on":
                 new_lang.is_available = True
             else:
@@ -427,7 +431,6 @@ def add_profile(request):
         form = ProfilesForm(request.POST)
         if form.is_valid():
             new_object = form.save(commit=False)
-            new_object.name = request.POST['name']
             new_object.school_id = Schools.objects.get(
                 pk=request.POST['school_id'])
             new_object.shortcut = "{}-{}".format(request.POST['shortcut'], new_object.school_id.shortcut)
@@ -501,9 +504,6 @@ def add_subject(request):
         form = SubjectsForm(request.POST)
         if form.is_valid():
             new_object = form.save(commit=False)
-            new_object.name = request.POST['name']
-            # new_object.school = Schools.objects.get(pk=request.POST['school'])
-            new_object.wage = request.POST['wage']
             if request.POST['is_available'] == "on":
                 new_object.is_available = True
             else:

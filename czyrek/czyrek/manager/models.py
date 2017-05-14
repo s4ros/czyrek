@@ -79,6 +79,9 @@ class Candidate(models.Model):
     primary_language = models.ForeignKey(Languages, related_name="l1")
     secondary_language = models.ForeignKey(Languages, related_name="l2")
     #
+    gim_language1 = models.ForeignKey(Languages, related_name="gim1")
+    gim_language2 = models.ForeignKey(Languages, related_name="gim2")
+    #
     subject_one = models.ForeignKey(Subjects, related_name="s1")
     subject_two = models.ForeignKey(Subjects, related_name="s2")
     subject_three = models.ForeignKey(Subjects, related_name="s3")
