@@ -23,7 +23,7 @@ class Languages(models.Model):
     BEGINNER = u"P"
     ADVANCED = u"Z"
     LANG_LEVELS = (
-        (BEGINNER, u"początkujący"),
+        (BEGINNER, u"podstawowy"),
         (ADVANCED, u"zaawansowany"),
     )
     name = models.CharField(max_length=30)
