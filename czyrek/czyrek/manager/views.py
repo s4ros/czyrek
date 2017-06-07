@@ -253,6 +253,8 @@ def edit_active_school(request, candidate_id, active_school):
     object_instance = Candidate.objects.get(pk=candidate_id)
     object_instance.active_school = Profiles.objects.get(pk=active_school)
     object_instance.save()
+    if "simulation" in request.META['HTTP_REFERER']:
+        return redirect('simulation')
     return redirect('list_candidates')
 
 
@@ -537,3 +539,22 @@ def edit_subject(request, subject_id):
             'form_action_view': 'edit_subject/{}'.format(object_instance.id),
         }
         return render(request, "add.html", context)
+
+####################
+# simulation
+@login_required(login_url='/')
+def simulation(request):
+    all_profiles = Profiles.objects.all()
+    all_objects = []
+    for p in all_profiles:
+        new_profile = dict()
+        new_profile['name'] = p.name
+        new_profile['shortcut'] = p.shortcut
+        new_profile['candidates'] = p.active_school.all()
+        all_objects.append(new_profile)
+    context = {
+        'all_objects': all_objects,
+        'message_list_header': u'Symulacja klas',
+        'is_admin': request.user.is_staff,
+    }
+    return render(request, "simulation.html", context)

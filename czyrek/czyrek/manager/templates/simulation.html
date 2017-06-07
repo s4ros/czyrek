@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{# ------------------------------------- #}
+
+{# ------------------------------------- #}
+{% block content %}
+<div id="content">
+  <h2>{{ message_list_header }}:</h2>
+<div class="hr_separator">
+  <hr />
+</div>
+
+{% block list_table %}
+
+<div id="profiles">
+
+{% for profile in all_objects %}
+  <div class="profile-box">
+
+    <div class="profile-box-name">
+      Profil: <span class="profile-name">{{ profile.name }}</span><br />
+      <span class="licznik-kandydatow">Kandydatów: {{ profile.candidates|length }}</span>
+      <div class="mini-hr"></div>
+    </div>
+
+    <div class="profile-box-candidates">
+      {% for candidate in profile.candidates %}
+        <div class="profile-box-candidate">
+          <span>{{ candidate.name }} {{ candidate.surname }} (
+            <a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.primary_school.id }}">{{ candidate.primary_school.shortcut }}</a> |
+            <a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.secondary_school.id }}">{{ candidate.secondary_school.shortcut }}</a> |
+            <a href="{% url 'edit_active_school' %}/{{ candidate.id }}/{{ candidate.third_school.id }}">{{ candidate.third_school.shortcut }}</a>)</span><br />
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
+<div class="hr_separator">
+  <hr />
+</div>
+</div>
+{% endblock content %}
+{# ------------------------------------- #}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+{% endblock scripts %}
+{# ------------------------------------- #}

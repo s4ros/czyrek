@@ -42,4 +42,7 @@ urlpatterns = [
     url(r'^add_subject$', views.add_subject, name='add_subject'),
     url(r'^delete_subject/(?P<subject_id>[0-9]+)$', views.delete_subject, name='delete_subject'),
     url(r'^edit_subject/(?P<subject_id>[0-9]+)$', views.edit_subject, name='edit_subject'),
+    # simulation
+    url(r'^simulation$', views.simulation, name='simulation'),
+    url(r'^simulation/(?P<candidate_id>[0-9]+)/(?P<active_school>[0-9]+)$', views.simulation, name='simulation'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
